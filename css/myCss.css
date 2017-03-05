@@ -1,0 +1,68 @@
+.auth{
+	margin-top: 10vh; 
+}body{
+	background-color: #bdc3c7;
+    height: auto;
+
+	    
+}
+.success{
+	background-color: #2ecc71;
+}
+.error{
+	background-color: #e74c3c;
+}
+/* The alert message box */
+.alert {
+    padding: 20px;
+   // background-color: #f44336; /* Red */
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}nav{
+    background-color: #3498db ;
+}.container{
+    width: 95% !important;
+}.row div{
+    margin-top: 10px;
+}.table {
+  display: block;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 115%;
+  overflow: auto;
+  width: auto;
+  
+  }th{
+    background-color: #3498db;
+    color: white;
+    font-weight: normal;
+    padding: 20px 30px;
+    text-align: center;
+    //opacity: 0.9;
+  }
+  td {
+    background-color: rgb(238, 238, 238);
+    //color: rgb(111, 111, 111);
+    color:black;
+    padding: 20px 30px;
+    text-align: center;
+    //opacity: 0.9;
+  }
