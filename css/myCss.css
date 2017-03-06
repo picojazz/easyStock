@@ -65,4 +65,19 @@
     padding: 20px 30px;
     text-align: center;
     //opacity: 0.9;
-  }
+  }.titre{
+  //padding-top: 5px;
+    //padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: black;
+    //background-color: #e7e5e4;
+    font-family: 'Gabriela', serif;
+    font-size: 50px;
+    letter-spacing: .10em;
+    //text-align: center;
+    text-shadow:
+        1px -1px 0 #767676,
+        -1px 2px 1px #767474;
+
+}

@@ -7,9 +7,7 @@ $(document).ready(function() {
 
     $('select').material_select();
 
-   $('.reload').click(function(){
-    window.location.reload();
-   });
+
     $('.closebtn').click(function(){
     	$(this).parent().fadeOut();
     });
@@ -40,10 +38,8 @@ $(document).ready(function() {
              $('#addCli').removeClass("green").addClass("blue").text("ajouter") ;
              
             },3000);
-            $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+tel+"</td><td>"+adresse+"</td><td class='modif'><a href='admin/modifClient.php?id="+data+"'>modifier</a></td><td class='supp'><a href='admin/suppClient.php?id="+data+"'>supp</a></td></tr>").hide(2).fadeIn(1000));
-            /*$.getScript("../js/script.js",function(){
-                console.log('aaa');
-            });*/
+            $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+tel+"</td><td>"+adresse+"</td><td class='modif'><a href='admin/modifClient.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppClient.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
+          
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
                 input.value="";

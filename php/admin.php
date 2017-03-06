@@ -35,7 +35,7 @@
       <div class="row">
 
         <div id="clients" class="col s12"><?php include 'admin/clients.php'; ?></div>
-        <div id="fournisseurs" class="col s12">fournisseur <button class='reload'>click</button></div>
+        <div id="fournisseurs" class="col s12">fournisseur</div>
         <div id="commandes" class="col s12">commande</div>
         <div id="stocks" class="col s12">stocks</div>
         <div id="livraison" class="col s12">livraison</div>
