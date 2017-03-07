@@ -23,12 +23,12 @@
     </div>
     <div class="nav-content">
       <ul  class="tabs  tabs-fixed-width">
-        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="admin.php">clients</a></li>
-        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="fournisseurs.php">fournisseurs</a></li>
-        <li class="tab "><a class="blue-text text-darken-2" href="#commandes">Commandes</a></li>
-        <li class="tab "><a class="blue-text text-darken-2" href="#stocks">stocks</a></li>
-        <li class="tab "><a class="blue-text text-darken-2" href="#livraison">livraison</a></li>
-        <li class="tab "><a class="blue-text text-darken-2" href="#facturation">facturation</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="admin.php">clients</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fournisseurs.php">fournisseurs</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commande.php">Commandes</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="produits.php">stocks</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="livraison.php">livraison</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="facturation.php">facturation</a></li>
         
       </ul>
     </div>

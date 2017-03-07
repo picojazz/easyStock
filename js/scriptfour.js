@@ -38,7 +38,7 @@ $(document).ready(function() {
              $('#addCli').removeClass("green").addClass("blue").text("ajouter") ;
              
             },3000);
-            $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+tel+"</td><td>"+adresse+"</td><td class='modif'><a href='admin/modifFour.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppFour.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
+            $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+test+"</td><td>"+adresse+"</td><td class='modif'><a href='admin/modifFour.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppFour.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
           
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
@@ -143,7 +143,7 @@ $(document).ready(function() {
             setTimeout(function (){
              $this.parents('tr').find("td:eq(0)").html(prenom1);
              $this.parents('tr').find("td:eq(1)").html(nom1);
-             $this.parents('tr').find("td:eq(2)").html(tel1);
+             $this.parents('tr').find("td:eq(2)").html(test);
              $this.parents('tr').find("td:eq(3)").html(adresse1);
                                  console.log('entrez dans ajax form');
 

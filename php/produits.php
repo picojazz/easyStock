@@ -1,7 +1,7 @@
 <?php 
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
-      $req="SELECT * FROM fournisseur ORDER BY codefour DESC ";
+      $req="SELECT * FROM produit ORDER BY codeprod DESC ";
       $verif=mysql_query($req);
       
      ?>
@@ -24,9 +24,9 @@
     <div class="nav-content">
       <ul  class="tabs  tabs-fixed-width">
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="admin.php">clients</a></li>
-        <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="fournisseurs.php">fournisseurs</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fournisseurs.php">fournisseurs</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commande.php">Commandes</a></li>
-        <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="produits.php">stocks</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="produits.php">stocks</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="livraison.php">livraison</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="facturation.php">facturation</a></li>
         
@@ -40,31 +40,25 @@
         
 
 <div class="row">
-<h3 class="center titre">Ajout de fournisseur</h3>
+<h3 class="center titre">Ajout de produit</h3>
 <div class="card-panel col s6 offset-s3">
   
   <div class="row">
     <form method="post" class="col s12" id="formCli" action="#">
       <div class="row">
         <div class="input-field col s6">
-          <input   type="text"  name="prenom" >
-          <label >Prenom</label>
+          <input   type="text"  name="designation" >
+          <label >Designation</label>
         </div>
         <div class="input-field col s6">
-          <input type="text"  name="nom" >
-          <label >Nom</label>
+          <input type="text"  name="pu" >
+          <label >Prix Unitaire</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input type="text"  name="adresse" >
-          <label>Adresse</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input  type="text"  name="tel" >
-          <label >telephone</label>
+          <input type="text"  name="qte" >
+          <label>Quantite</label>
         </div>
       </div>
       <button class="btn blue"  type="submit" id="addCli">Ajouter</button>
@@ -75,26 +69,24 @@
 </div>
 
  <div class="row">
-    <h3 class="center titre">Liste des fournisseurs</h3>
+    <h3 class="center titre">Liste des produits</h3>
     <table class="clientTable">
   <tbody>
     <tr>
-      <th>Prenom</th>
-      <th>Nom</th>
-      <th>Telephone</th>
-      <th>Adresse</th>
+      <th>Designation</th>
+      <th>Prix Unitaire</th>
+      <th>quantite</th>
       <th>modifier</th>
       <th>supprimer</th>
       
     </tr>
     <?php while ($recup=mysql_fetch_array($verif)) { ?>
     <tr>
-       <td><?php echo $recup['prenom']; ?></td>
-       <td><?php echo $recup['nom']; ?></td>
-       <td><?php echo $recup['tel']; ?></td>
-       <td><?php echo $recup['adresse']; ?></td>
-       <td class="modif"><a href="admin/modifFour.php?id=<?php echo $recup['codefour']; ?>"><img src='../image/modif.png'></a></td>
-     <td class="supp"><a href="admin/suppFour.php?id=<?php echo $recup['codefour']; ?>"><img src="../image/supp.png"></a></td>
+       <td><?php echo $recup['designation']; ?></td>
+       <td><?php echo $recup['pu']; ?></td>
+       <td><?php echo $recup['qte']; ?></td>
+       <td class="modif"><a href="admin/modifProd.php?id=<?php echo $recup['codeprod']; ?>"><img src='../image/modif.png'></a></td>
+     <td class="supp"><a href="admin/suppProd.php?id=<?php echo $recup['codeprod']; ?>"><img src="../image/supp.png"></a></td>
     </tr>
     <?php } ?>
   </tbody>
@@ -106,28 +98,22 @@
   <div id="modal1" class="modal modal-fixed-footer">
   <form method="post" id="formModif"  action="#">
     <div class="modal-content">
-      <h4 class="center titre">Modifier un fournisseur</h4>
+      <h4 class="center titre">Modifier un produit</h4>
     
       <div class="row">
         <div class=" col s6">
-          <label >Prenom</label>
-          <input   type="text"  name="prenom" >
+          <label >Designation</label>
+          <input   type="text"  name="designation" >
         </div>
         <div class=" col s6">
-          <label >Nom</label>
-          <input type="text"  name="nom" >
+          <label >Prix Unitaire </label>
+          <input type="text"  name="pu" >
         </div>
       </div>
       <div class="row">
         <div class=" col s12">
-          <label>Adresse</label>
-          <input type="text"  name="adresse" >
-        </div>
-      </div>
-      <div class="row">
-        <div class=" col s12">
-          <label >telephone</label>
-          <input  type="text"  name="tel" >
+          <label>Quantite</label>
+          <input type="text"  name="qte" >
         </div>
       </div>
 
@@ -153,7 +139,7 @@
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
-<script src="../js/scriptfour.js"></script>
+<script src="../js/scriptProd.js"></script>
 
 </body>
 </html>
