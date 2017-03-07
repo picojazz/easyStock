@@ -1,17 +1,17 @@
 <?php 
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
-      $req="SELECT * FROM client ORDER BY codecli DESC ";
+      $req="SELECT * FROM fournisseur ORDER BY codefour DESC ";
       $verif=mysql_query($req);
       
      ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="../css/materialize.min.css">
-	<link rel="stylesheet" href="../css/myCss.css">
-	<title>scAcces</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/materialize.min.css">
+  <link rel="stylesheet" href="../css/myCss.css">
+  <title>scAcces</title>
 </head>
 <body>
 <nav class="nav-extended ">
@@ -23,8 +23,8 @@
     </div>
     <div class="nav-content">
       <ul  class="tabs  tabs-fixed-width">
-        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="admin.php">clients</a></li>
-        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="fournisseurs.php">fournisseurs</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="admin.php">clients</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="fournisseurs.php">fournisseurs</a></li>
         <li class="tab "><a class="blue-text text-darken-2" href="#commandes">Commandes</a></li>
         <li class="tab "><a class="blue-text text-darken-2" href="#stocks">stocks</a></li>
         <li class="tab "><a class="blue-text text-darken-2" href="#livraison">livraison</a></li>
@@ -40,7 +40,7 @@
         
 
 <div class="row">
-<h3 class="center titre">Ajout de clients</h3>
+<h3 class="center titre">Ajout de fournisseur</h3>
 <div class="card-panel col s6 offset-s3">
   
   <div class="row">
@@ -75,7 +75,7 @@
 </div>
 
  <div class="row">
-    <h3 class="center titre">Liste des clients</h3>
+    <h3 class="center titre">Liste des fournisseurs</h3>
     <table class="clientTable">
   <tbody>
     <tr>
@@ -93,8 +93,8 @@
        <td><?php echo $recup['nom']; ?></td>
        <td><?php echo $recup['tel']; ?></td>
        <td><?php echo $recup['adresse']; ?></td>
-       <td class="modif"><a href="admin/modifClient.php?id=<?php echo $recup['codecli']; ?>"><img src='../image/modif.png'></a></td>
-     <td class="supp"><a href="admin/suppClient.php?id=<?php echo $recup['codecli']; ?>"><img src="../image/supp.png"></a></td>
+       <td class="modif"><a href="admin/modifFour.php?id=<?php echo $recup['codefour']; ?>"><img src='../image/modif.png'></a></td>
+     <td class="supp"><a href="admin/suppFour.php?id=<?php echo $recup['codefour']; ?>"><img src="../image/supp.png"></a></td>
     </tr>
     <?php } ?>
   </tbody>
@@ -106,7 +106,7 @@
   <div id="modal1" class="modal modal-fixed-footer">
   <form method="post" id="formModif"  action="#">
     <div class="modal-content">
-      <h4 class="center titre">Modifier un client</h4>
+      <h4 class="center titre">Modifier un fournisseur</h4>
     
       <div class="row">
         <div class=" col s6">
@@ -143,17 +143,17 @@
     </div>
 
       
-	
+  
     
   
-	
+  
 
 
 
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
-<script src="../js/script.js"></script>
+<script src="../js/scriptfour.js"></script>
 
 </body>
 </html>
