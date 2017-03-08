@@ -39,7 +39,7 @@ $(document).ready(function() {
              
             },3000);
             $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+test+"</td><td>"+adresse+"</td><td class='modif'><a href='admin/modifFour.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppFour.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
-          
+          Materialize.toast('nouveau fournisseur ajouté !', 4000);
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
                 input.value="";
@@ -76,6 +76,7 @@ $(document).ready(function() {
         var $this=$(this);
         $.get($(this).attr("href"),function(data){
             $this.parents('tr').fadeOut();
+            Materialize.toast('fournisseur supprimé !', 4000);
         });
         return false;
     });
@@ -93,14 +94,14 @@ $(document).ready(function() {
             dataType : "json",   
             success : function(data)
             {
-                console.log('entrez dans ajax',data.codecli);
+                console.log('entrez dans ajax',data.codefour);
                 $('.modal form').find("input[name=prenom]").val(data.prenom);
                 $('.modal form').find("input[name=nom]").val(data.nom);
                 $('.modal form').find("input[name=tel]").val(data.tel);
                 $('.modal form').find("input[name=adresse]").val(data.adresse);
                  $('#modal1').modal('open');
 
-                 $id=data.codecli;
+                 $id=data.codefour;
                 
 
 
@@ -125,7 +126,7 @@ $(document).ready(function() {
             console.log('click avant ajax form');
             if (Number.isInteger(test) == true) {
         
-        $.post("admin/modifFour1.php",{id: parseInt($id),prenom: prenom1, nom: nom1, adresse: adresse1, tel: tel1},function(d){
+        $.post("admin/modifFour1.php",{id: parseInt($id),prenom: prenom1, nom: nom1, adresse: adresse1, tel: test},function(d){
             if (d =="non") {
                 $('.butModif').removeClass("blue").addClass("red").text("erreur de saisie : champs vides");
             setTimeout(function (){ 
@@ -145,7 +146,8 @@ $(document).ready(function() {
              $this.parents('tr').find("td:eq(1)").html(nom1);
              $this.parents('tr').find("td:eq(2)").html(test);
              $this.parents('tr').find("td:eq(3)").html(adresse1);
-                                 console.log('entrez dans ajax form');
+                                 console.log('entrez dans ajax form',d);
+            Materialize.toast('fournisseur modifié !', 4000);
 
              var inputs = document.querySelectorAll("#formModif input");
             inputs.forEach( function(input) {

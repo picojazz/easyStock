@@ -1,9 +1,16 @@
 <?php 
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
+
+    if (isset($_POST['rech'])) {
+      $rech=$_POST['rech'];
+      $req="SELECT * FROM client WHERE prenom='$rech' ";
+      $verif=mysql_query($req);
+    }else{
+
       $req="SELECT * FROM client ORDER BY codecli DESC ";
       $verif=mysql_query($req);
-      
+      }
      ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +74,16 @@
           <label >telephone</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s12">
+                  
+                  <select name="type">
+                    <option value="personne">personne</option>
+                    <option value="entreprise">entreprise</option>
+                  </select>
+                  <label for="">Type</label>
+                </div>
+      </div>
       <button class="btn blue"  type="submit" id="addCli">Ajouter</button>
       
     </form>
@@ -76,6 +93,22 @@
 
  <div class="row">
     <h3 class="center titre">Liste des clients</h3>
+    <div class=" col s6 offset-s3">
+
+  <nav>
+    <div class="nav-wrapper">
+      <form method="post" action="admin.php">
+        <div class="input-field">
+          <input id="search" type="search" name="rech">
+          <label class="label-icon" for="search"><i class="material-icons"><img src='../image/rech.png' height="60" width="45"></i></label>
+          <i class="material-icons">&times</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <br><br>
+    </div>
+
     <table class="clientTable">
   <tbody>
     <tr>
@@ -83,6 +116,7 @@
       <th>Nom</th>
       <th>Telephone</th>
       <th>Adresse</th>
+      <th>Type</th>
       <th>modifier</th>
       <th>supprimer</th>
       
@@ -93,6 +127,7 @@
        <td><?php echo $recup['nom']; ?></td>
        <td><?php echo $recup['tel']; ?></td>
        <td><?php echo $recup['adresse']; ?></td>
+       <td><?php echo $recup['type']; ?></td>
        <td class="modif"><a href="admin/modifClient.php?id=<?php echo $recup['codecli']; ?>"><img src='../image/modif.png'></a></td>
      <td class="supp"><a href="admin/suppClient.php?id=<?php echo $recup['codecli']; ?>"><img src="../image/supp.png"></a></td>
     </tr>

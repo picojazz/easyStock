@@ -1,9 +1,15 @@
 <?php 
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
+
+    if (isset($_POST['rech'])) {
+      $rech=$_POST['rech'];
+      $req="SELECT * FROM fournisseur WHERE prenom='$rech' ";
+      $verif=mysql_query($req);
+    }else{
       $req="SELECT * FROM fournisseur ORDER BY codefour DESC ";
       $verif=mysql_query($req);
-      
+      }
      ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +82,21 @@
 
  <div class="row">
     <h3 class="center titre">Liste des fournisseurs</h3>
+    <div class=" col s6 offset-s3">
+
+  <nav>
+    <div class="nav-wrapper">
+      <form method="post">
+        <div class="input-field">
+          <input id="search" type="search" name="rech">
+          <label class="label-icon" for="search"><i class="material-icons"><img src='../image/rech.png' height="60" width="45"></i></label>
+          <i class="material-icons">&times</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <br><br>
+    </div>
     <table class="clientTable">
   <tbody>
     <tr>

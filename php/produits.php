@@ -1,9 +1,17 @@
 <?php 
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
+    if (isset($_POST['rech'])) {
+      $rech=$_POST['rech'];
+      $req="SELECT * FROM produit WHERE designation='$rech' ";
+      $verif=mysql_query($req);
+    }else{
       $req="SELECT * FROM produit ORDER BY codeprod DESC ";
       $verif=mysql_query($req);
-      
+      }
+      $req1="SELECT * FROM produit  ";
+      $verif1=mysql_query($req1);
+      $total=0;
      ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,6 +78,58 @@
 
  <div class="row">
     <h3 class="center titre">Liste des produits</h3>
+    <div class=" col s6 offset-s3">
+
+  <nav>
+    <div class="nav-wrapper">
+      <form method="post">
+        <div class="input-field">
+          <input id="search" type="search" name="rech">
+          <label class="label-icon" for="search"><i class="material-icons"><img src='../image/rech.png' height="60" width="45"></i></label>
+          <i class="material-icons">&times</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <br>
+    </div>
+    <div class=" col s6 offset-s3 center">
+
+      <a class="modal-trigger waves-effect waves-light btn blue" href="#modal2">Inventaire des produits</a>
+
+  
+  <div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="titre">Inventaire des produits</h4>
+      <div class="row">
+        <table>
+          <tbody>
+            <tr>
+              <th>Designation</th>
+              <th>Prix Unitaire</th>
+              <th>Quantite</th>
+              <th>Total</th>
+            </tr>
+            <?php while ($recup1=mysql_fetch_array($verif1)) { ?>
+            <tr>
+              <td><?php echo $recup1['designation']; ?></td>
+              <td><?php echo $recup1['pu']; ?></td>
+              <td><?php echo $recup1['qte']; ?></td>
+              <td><?php $som=$recup1['pu']*$recup1['qte']; echo $som ;?></td>
+            </tr>
+            <?php $total+=$som; } ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+    <h5 class="left">TOTAL :  <?php echo $total; ?> francs</h5>
+      <a href="#!" class="modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
+    </div>
+  </div><br><br>
+</div>
+
+
     <table class="clientTable">
   <tbody>
     <tr>

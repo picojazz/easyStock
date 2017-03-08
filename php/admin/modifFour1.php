@@ -7,8 +7,8 @@
 	 	$req=sprintf("UPDATE fournisseur SET prenom='$prenom',nom='$nom',tel='$tel',adresse='$adresse' WHERE codefour='$id'" ); 
 		$verif=mysql_query($req)or die(mysql_error());
 		
-		
+		echo "ouii";
 	 }
 
-
+ 
  ?>

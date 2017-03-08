@@ -39,7 +39,7 @@ $(document).ready(function() {
              
             },3000);
             $('tbody tr:first-child').after($("<tr><td>"+designation+"</td><td>"+test+"</td><td>"+test1+"</td><td class='modif'><a href='admin/modifProd.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppProd.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
-          
+          Materialize.toast('nouveau produit ajouté !', 4000);
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
                 input.value="";
@@ -76,6 +76,7 @@ $(document).ready(function() {
         var $this=$(this);
         $.get($(this).attr("href"),function(data){
             $this.parents('tr').fadeOut();
+            Materialize.toast('produit supprimé !', 4000);
         });
         return false;
     });
@@ -143,6 +144,7 @@ $(document).ready(function() {
              $this.parents('tr').find("td:eq(1)").html(test);
              $this.parents('tr').find("td:eq(2)").html(test1);
                                  console.log('entrez dans ajax form');
+            Materialize.toast('produit modifié !', 4000);
 
              var inputs = document.querySelectorAll("#formModif input");
             inputs.forEach( function(input) {
