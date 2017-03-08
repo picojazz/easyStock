@@ -171,6 +171,33 @@ $(document).ready(function() {
         return false;
     });
 
+    $('.mo').on('click',function(){
+
+      $.ajax({
+            url : "admin/prod.php",  
+            dataType : "json",   
+            success : function(data)
+            {
+              var tot = 0;
+                //alert(JSON.stringify(data));
+                data.forEach(function(d){
+                 $('.prod ').append("<tr><td>"+d.designation+"</td><td>"+d.pu+" F</td><td>"+d.qte+"</td><td>"+parseInt(d.qte)*parseInt(d.pu)+" F</td></tr>");
+                 tot+=parseInt(d.qte)*parseInt(d.pu);
+                });
+                $('.tot ').html("TOTAL : "+tot+" F CFA");
+                $('#modal2').modal('open');
+                
+
+
+            }
+
+        });
+      var a=$('.prod ').find("tr:eq(0)");
+      $('.prod ').empty().append(a);
+
+      return false;
+    });
+
    
 
 });

@@ -95,14 +95,14 @@
     </div>
     <div class=" col s6 offset-s3 center">
 
-      <a class="modal-trigger waves-effect waves-light btn blue" href="#modal2">Inventaire des produits</a>
+      <a class="mo modal-trigger waves-effect waves-light btn blue" href="#modal2">Inventaire des produits</a>
 
   
   <div id="modal2" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4 class="titre">Inventaire des produits</h4>
       <div class="row">
-        <table>
+        <table class="prod">
           <tbody>
             <tr>
               <th>Designation</th>
@@ -110,21 +110,14 @@
               <th>Quantite</th>
               <th>Total</th>
             </tr>
-            <?php while ($recup1=mysql_fetch_array($verif1)) { ?>
-            <tr>
-              <td><?php echo $recup1['designation']; ?></td>
-              <td><?php echo $recup1['pu']; ?></td>
-              <td><?php echo $recup1['qte']; ?></td>
-              <td><?php $som=$recup1['pu']*$recup1['qte']; echo $som ;?></td>
-            </tr>
-            <?php $total+=$som; } ?>
+           
           </tbody>
         </table>
       </div>
     </div>
     <div class="modal-footer">
-    <h5 class="left">TOTAL :  <?php $total1=number_format($total, 0, ',', ' '); echo $total1 ?> francs</h5>
-      <a href="#!" class="modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
+    <h5 class="tot left">  </h5>
+      <a href="!#" class=" modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
     </div>
   </div><br><br>
 </div>
