@@ -123,7 +123,7 @@
       </div>
     </div>
     <div class="modal-footer">
-    <h5 class="left">TOTAL :  <?php echo $total; ?> francs</h5>
+    <h5 class="left">TOTAL :  <?php $total1=number_format($total, 0, ',', ' '); echo $total1 ?> francs</h5>
       <a href="#!" class="modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
     </div>
   </div><br><br>
@@ -155,7 +155,7 @@
 
 
 
-  <div id="modal1" class="modal modal-fixed-footer">
+  <div id="modal1" class="mod modal modal-fixed-footer">
   <form method="post" id="formModif"  action="#">
     <div class="modal-content">
       <h4 class="center titre">Modifier un produit</h4>

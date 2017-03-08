@@ -38,7 +38,7 @@ $(document).ready(function() {
              $('#addCli').removeClass("green").addClass("blue").text("ajouter") ;
              
             },3000);
-            $('tbody tr:first-child').after($("<tr><td>"+designation+"</td><td>"+test+"</td><td>"+test1+"</td><td class='modif'><a href='admin/modifProd.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppProd.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
+            $('.clientTable tbody tr:first-child').after($("<tr><td>"+designation+"</td><td>"+test+"</td><td>"+test1+"</td><td class='modif'><a href='admin/modifProd.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppProd.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
           Materialize.toast('nouveau produit ajouté !', 4000);
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
@@ -95,9 +95,9 @@ $(document).ready(function() {
             success : function(data)
             {
                 console.log('entrez dans ajax',data.codeprod);
-                $('.modal form').find("input[name=designation]").val(data.designation);
-                $('.modal form').find("input[name=pu]").val(data.pu);
-                $('.modal form').find("input[name=qte]").val(data.qte);
+                $('.mod form').find("input[name=designation]").val(data.designation);
+                $('.mod form').find("input[name=pu]").val(data.pu);
+                $('.mod form').find("input[name=qte]").val(data.qte);
                  $('#modal1').modal('open');
 
                  $id=data.codeprod;
