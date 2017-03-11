@@ -2,12 +2,25 @@
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
 
+      $reqm="SELECT codefour FROM fournisseur ";
+      $verifm=mysql_query($reqm);
+      $nbAll=mysql_num_rows($verifm);
+      $nPage = 8;
+      $page = ceil($nbAll/$nPage);
+
+      if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $page) {
+       $pageActuel = $_GET['p'] ;
+      }else{
+        $pageActuel = 1 ;
+      }
+
+
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
-      $req="SELECT * FROM fournisseur WHERE prenom='$rech' ";
+      $req="SELECT * FROM fournisseur WHERE prenom='$rech' OR nom='$rech' OR tel='$rech' OR adresse='$rech'";
       $verif=mysql_query($req);
     }else{
-      $req="SELECT * FROM fournisseur ORDER BY codefour DESC ";
+      $req="SELECT * FROM fournisseur ORDER BY codefour DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage ";
       $verif=mysql_query($req);
       }
      ?>
@@ -23,7 +36,7 @@
 <nav class="nav-extended ">
     <div class="nav-wrapper ">
       <a href="#" class="brand-logo center">Admin</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul id="nav-mobile" class="right">
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
       </ul>
     </div>
@@ -31,7 +44,7 @@
       <ul  class="tabs  tabs-fixed-width">
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="admin.php">clients</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="fournisseurs.php">fournisseurs</a></li>
-        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commande.php">Commandes</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commandes.php">Commandes</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="produits.php">stocks</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="livraison.php">livraison</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="facturation.php">facturation</a></li>
@@ -161,9 +174,29 @@
 
       </div>
 
+       <ul class="pagination center">
+
+<?php for ($i=1; $i<=$page ; $i++) {  ?>
+      <?php if ($i == $pageActuel){ ?>
+        <li class="active"><a href="fournisseurs.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+      <?php }else{ ?>
+    
+    <li class="waves-effect"><a href="fournisseurs.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+    <?php } ?>
+
+<?php } ?>
+      </ul>
+
     </div>
 
-      
+      <footer class="page-footer">
+          
+          <div class="footer-copyright">
+            <div class="container">
+            © March 2017 Copyright <p class="right"> Picojazz</p>
+            </div>
+          </div>
+        </footer>
   
     
   

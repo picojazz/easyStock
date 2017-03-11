@@ -1,12 +1,28 @@
 <?php 
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
+
+    $reqm="SELECT codeprod FROM produit ";
+      $verifm=mysql_query($reqm);
+      $nbAll=mysql_num_rows($verifm);
+      $nPage = 8;
+      $page = ceil($nbAll/$nPage);
+      //print_r($nbAll);
+      //die();
+
+      if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $page) {
+       $pageActuel = $_GET['p'] ;
+      }else{
+        $pageActuel = 1 ;
+      }
+
+
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
-      $req="SELECT * FROM produit WHERE designation='$rech' ";
+      $req="SELECT * FROM produit WHERE designation='$rech' OR pu='$rech' OR qte='$rech' ";
       $verif=mysql_query($req);
     }else{
-      $req="SELECT * FROM produit ORDER BY codeprod DESC ";
+      $req="SELECT * FROM produit ORDER BY codeprod DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage";
       $verif=mysql_query($req);
       }
       $req1="SELECT * FROM produit  ";
@@ -19,13 +35,14 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../css/materialize.min.css">
   <link rel="stylesheet" href="../css/myCss.css">
+  <link rel="stylesheet" type="text/css" media="print" href="../css/print.css" />
   <title>scAcces</title>
 </head>
 <body>
 <nav class="nav-extended ">
     <div class="nav-wrapper ">
       <a href="#" class="brand-logo center">Admin</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul id="nav-mobile" class="right ">
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
       </ul>
     </div>
@@ -33,7 +50,7 @@
       <ul  class="tabs  tabs-fixed-width">
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="admin.php">clients</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fournisseurs.php">fournisseurs</a></li>
-        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commande.php">Commandes</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commandes.php">Commandes</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="produits.php">stocks</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="livraison.php">livraison</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="facturation.php">facturation</a></li>
@@ -41,6 +58,34 @@
       </ul>
     </div>
 </nav>
+
+
+
+  <div id="modal2" class="imp modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="titre center">Inventaire des produits</h4>
+      <div class="row">
+        <table class="prod">
+          <tbody>
+            <tr>
+              <th>Designation</th>
+              <th>Prix Unitaire</th>
+              <th>Quantite</th>
+              <th>Total</th>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+    <h5 class="tot left">  </h5>
+      <a href="!#" class="imprimer modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
+    </div>
+  </div>
+
+
+
 
     <div class="container">
         <?php include 'moduleAlert.php' ?>
@@ -98,28 +143,7 @@
       <a class="mo modal-trigger waves-effect waves-light btn blue" href="#modal2">Inventaire des produits</a>
 
   
-  <div id="modal2" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4 class="titre">Inventaire des produits</h4>
-      <div class="row">
-        <table class="prod">
-          <tbody>
-            <tr>
-              <th>Designation</th>
-              <th>Prix Unitaire</th>
-              <th>Quantite</th>
-              <th>Total</th>
-            </tr>
-           
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="modal-footer">
-    <h5 class="tot left">  </h5>
-      <a href="!#" class=" modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
-    </div>
-  </div><br><br>
+  <br><br>
 </div>
 
 
@@ -179,11 +203,31 @@
 
       </div>
 
+      <ul class="pagination center">
+
+<?php for ($i=1; $i<=$page ; $i++) {  ?>
+      <?php if ($i == $pageActuel){ ?>
+        <li class="active"><a href="produits.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+      <?php }else{ ?>
+    
+    <li class="waves-effect"><a href="produits.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+    <?php } ?>
+
+<?php } ?>
+      </ul>
+
     </div>
 
       
   
-    
+    <footer class="page-footer">
+          
+          <div class="footer-copyright">
+            <div class="container">
+            © March 2017 Copyright <p class="right"> Picojazz</p>
+            </div>
+          </div>
+        </footer>
   
   
 

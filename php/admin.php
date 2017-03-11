@@ -2,13 +2,28 @@
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
 
+      $reqm="SELECT codecli FROM client ";
+      $verifm=mysql_query($reqm);
+      $nbAll=mysql_num_rows($verifm);
+      $nPage = 8;
+      $page = ceil($nbAll/$nPage);
+
+      if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $page) {
+       $pageActuel = $_GET['p'] ;
+      }else{
+        $pageActuel = 1 ;
+      }
+
+      
+
+
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
-      $req="SELECT * FROM client WHERE prenom='$rech' ";
+      $req="SELECT * FROM client WHERE prenom='$rech' OR nom='$rech' OR tel='$rech' OR adresse='$rech' OR type='$rech' ";
       $verif=mysql_query($req);
     }else{
 
-      $req="SELECT * FROM client ORDER BY codecli DESC ";
+      $req="SELECT * FROM client ORDER BY codecli DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage ";
       $verif=mysql_query($req);
       }
      ?>
@@ -24,7 +39,7 @@
 <nav class="nav-extended ">
     <div class="nav-wrapper ">
       <a href="#" class="brand-logo center">Admin</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <ul id="nav-mobile" class="right">
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
       </ul>
     </div>
@@ -32,7 +47,7 @@
       <ul  class="tabs  tabs-fixed-width">
         <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="admin.php">clients</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fournisseurs.php">fournisseurs</a></li>
-        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commande.php">Commandes</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commandes.php">Commandes</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="produits.php">stocks</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="livraison.php">livraison</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="facturation.php">facturation</a></li>
@@ -47,7 +62,7 @@
         
 
 <div class="row">
-<h3 class="center titre">Ajout de clients</h3>
+<h3 class="center titre">Ajout de client</h3>
 <div class="card-panel col s6 offset-s3">
   
   <div class="row">
@@ -174,12 +189,31 @@
   </div>
 
       </div>
+      <ul class="pagination center">
+
+<?php for ($i=1; $i<=$page ; $i++) {  ?>
+      <?php if ($i == $pageActuel){ ?>
+        <li class="active"><a href="admin.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+      <?php }else{ ?>
+    
+    <li class="waves-effect"><a href="admin.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+    <?php } ?>
+
+<?php } ?>
+      </ul>
 
     </div>
 
       
 	
-    
+    <footer class="page-footer">
+          
+          <div class="footer-copyright">
+            <div class="container">
+            © March 2017 Copyright <p class="right"> Picojazz</p>
+            </div>
+          </div>
+        </footer>
   
 	
 

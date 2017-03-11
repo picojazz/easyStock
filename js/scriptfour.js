@@ -39,7 +39,7 @@ $(document).ready(function() {
              
             },3000);
             $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+test+"</td><td>"+adresse+"</td><td class='modif'><a href='admin/modifFour.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppFour.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
-          Materialize.toast('nouveau fournisseur ajouté !', 4000);
+          Materialize.toast('nouveau fournisseur ajouté !', 4000,'green');
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
                 input.value="";
@@ -76,7 +76,7 @@ $(document).ready(function() {
         var $this=$(this);
         $.get($(this).attr("href"),function(data){
             $this.parents('tr').fadeOut();
-            Materialize.toast('fournisseur supprimé !', 4000);
+            Materialize.toast('fournisseur supprimé !', 4000,'green');
         });
         return false;
     });
@@ -147,7 +147,7 @@ $(document).ready(function() {
              $this.parents('tr').find("td:eq(2)").html(test);
              $this.parents('tr').find("td:eq(3)").html(adresse1);
                                  console.log('entrez dans ajax form',d);
-            Materialize.toast('fournisseur modifié !', 4000);
+            Materialize.toast('fournisseur modifié !', 4000,'green');
 
              var inputs = document.querySelectorAll("#formModif input");
             inputs.forEach( function(input) {

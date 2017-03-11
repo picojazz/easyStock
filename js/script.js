@@ -40,7 +40,7 @@ $(document).ready(function() {
              
             },3000);
             $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+test+"</td><td>"+adresse+"</td><td>"+type+"</td><td class='modif'><a href='admin/modifClient.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppClient.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
-          Materialize.toast('nouveau client ajouté !', 4000);
+          Materialize.toast('nouveau client ajouté !', 4000,'green');
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
                 input.value="";
@@ -77,7 +77,7 @@ $(document).ready(function() {
         var $this=$(this);
         $.get($(this).attr("href"),function(data){
             $this.parents('tr').fadeOut();
-            Materialize.toast('client supprimé !', 4000);
+            Materialize.toast('client supprimé !', 4000,'green');
         });
         return false;
     });
@@ -127,7 +127,7 @@ $(document).ready(function() {
             console.log('click avant ajax form');
             if (Number.isInteger(test) == true) {
         
-        $.post("admin/modifClient1.php",{id: parseInt($id),prenom: prenom1, nom: nom1, adresse: adresse1, tel: tel1},function(d){
+        $.post("admin/modifClient1.php",{id: parseInt($id),prenom: prenom1, nom: nom1, adresse: adresse1, tel: test},function(d){
             if (d =="non") {
                 $('.butModif').removeClass("blue").addClass("red").text("erreur de saisie : champs vides");
             setTimeout(function (){ 
@@ -148,7 +148,7 @@ $(document).ready(function() {
              $this.parents('tr').find("td:eq(2)").html(test);
              $this.parents('tr').find("td:eq(3)").html(adresse1);
                                  console.log('entrez dans ajax form');
-            Materialize.toast('client modifié !', 4000);
+            Materialize.toast('client modifié !', 4000,'green');
 
              var inputs = document.querySelectorAll("#formModif input");
             inputs.forEach( function(input) {
