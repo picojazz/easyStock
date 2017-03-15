@@ -181,7 +181,7 @@ $(document).ready(function() {
               var tot = 0;
                 //alert(JSON.stringify(data));
                 data.forEach(function(d){
-                 $('.prod ').append("<tr><td>"+d.designation+"</td><td>"+d.pu+" F</td><td>"+d.qte+"</td><td>"+parseInt(d.qte)*parseInt(d.pu)+" F</td></tr>");
+                 $('.prod ').append("<tr><td>"+d.codeprod+"</td><td>"+d.designation+"</td><td>"+d.pu+" F</td><td>"+d.qte+"</td><td>"+parseInt(d.qte)*parseInt(d.pu)+" F</td></tr>");
                  tot+=parseInt(d.qte)*parseInt(d.pu);
                 });
                 $('.tot ').html("TOTAL : "+tot+" F CFA");
@@ -199,15 +199,7 @@ $(document).ready(function() {
     });
 
    
-    $('.imprimer').on('click',function(e){
-      e.preventDefault();
-      //$('nav').hide();
-      //$('.container').hide();
-      window.print();
-      
-
-      return false;
-    });
+    
 
 
 

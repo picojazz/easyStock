@@ -17,7 +17,7 @@
 
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
-      $req="SELECT * FROM fournisseur WHERE prenom='$rech' OR nom='$rech' OR tel='$rech' OR adresse='$rech'";
+      $req="SELECT * FROM fournisseur WHERE prenom like '%$rech%' OR nom like '%$rech%' OR tel like '%$rech%' OR adresse like '%$rech%'";
       $verif=mysql_query($req);
     }else{
       $req="SELECT * FROM fournisseur ORDER BY codefour DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage ";

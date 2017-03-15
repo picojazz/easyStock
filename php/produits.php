@@ -19,7 +19,7 @@
 
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
-      $req="SELECT * FROM produit WHERE designation='$rech' OR pu='$rech' OR qte='$rech' ";
+      $req="SELECT * FROM produit WHERE designation like '%$rech%' OR pu like '%$rech%' OR qte like '%$rech%' ";
       $verif=mysql_query($req);
     }else{
       $req="SELECT * FROM produit ORDER BY codeprod DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage";
@@ -68,6 +68,7 @@
         <table class="prod">
           <tbody>
             <tr>
+              <th>Code Produit</th>
               <th>Designation</th>
               <th>Prix Unitaire</th>
               <th>Quantite</th>
@@ -80,7 +81,7 @@
     </div>
     <div class="modal-footer">
     <h5 class="tot left">  </h5>
-      <a href="!#" class="imprimer modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
+      <a href="inventaire.php" class="imprimer modal-action modal-close waves-effect white-text waves-green btn-flat blue ">Imprimer</a>
     </div>
   </div>
 

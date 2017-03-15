@@ -19,7 +19,7 @@
 
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
-      $req="SELECT * FROM client WHERE prenom='$rech' OR nom='$rech' OR tel='$rech' OR adresse='$rech' OR type='$rech' ";
+      $req="SELECT * FROM client WHERE prenom like '%$rech%' OR nom like'%$rech%' OR tel like '%$rech%' OR adresse like '%$rech%' OR type like '%$rech%' ";
       $verif=mysql_query($req);
     }else{
 

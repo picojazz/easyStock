@@ -61,13 +61,13 @@
             <select name='prod' required>
               <option value="" disabled selected>selectionner un produit</option>
               <?php while ($recupp=mysql_fetch_assoc($verifp)) { ?>
-              <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation'].'  qte : '.$recupp['qte']; ?></option>
+              <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation'].'  quantite : '.$recupp['qte']; ?></option>
               <?php } ?>
             </select>
             <label>Produit</label>
           </div>
           <div class="input-field ">
-          <input placeholder="quantite a commander"  type="text" name="qtecmd" required>
+          <input placeholder="quantite a commander"  type="number" name="qtecmd" class="validate" required>
           <label >Quantite</label>
         </div>
 
@@ -99,7 +99,7 @@
           <h5 class="total blue white-text">TOTAL : 0 F CFA</h5><br>
           <form method="post">
 
-          <div class="input-field ">
+          <div class="input-field col s8 ">
             <select required>
               <option value="" disabled selected>selectionner un client</option>
               <?php while ($recup=mysql_fetch_assoc($verif)) { ?>
@@ -107,7 +107,7 @@
               <?php } ?>
             </select>
             <label>Client</label>
-          </div>
+          </div><br>
 
           
 
@@ -148,7 +148,14 @@
     </div>
 
       
-  
+  <footer class="page-footer">
+          
+          <div class="footer-copyright">
+            <div class="container">
+            © March 2017 Copyright <p class="right"> Picojazz</p>
+            </div>
+          </div>
+        </footer>
 
   
   
