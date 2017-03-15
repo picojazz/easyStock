@@ -115,7 +115,7 @@
       <form method="post" action="admin.php">
         <div class="input-field">
           <input id="search" type="search" name="rech">
-          <label class="label-icon" for="search"><i class="material-icons"><img src='../image/rech.png' height="60" width="45"></i></label>
+          <label class="label-icon" for="search"><i class="material-icons"><img src='../image/rech.png' height="32" width="32"></i></label>
           <i class="material-icons">&times</i>
         </div>
       </form>

@@ -52,48 +52,40 @@
         <?php include 'moduleAlert.php' ?>
       <div class="row">
         <h3 class="center titre">Gestion des commandes</h3>
-        <div class="card-panel col s5 ">
+        <div class="card-panel col s4 center com">
           <h5 class=" center">commande</h5>
         
-          
-          <div class="input-field ">
-            <select>
-              <option value="" disabled selected>selectionner un client</option>
-              <?php while ($recup=mysql_fetch_assoc($verif)) { ?>
-              <option value="<?php echo $recup['codecli']; ?>"><?php echo $recup['prenom'].' '.$recup['nom'].' code client :'.$recup['codecli']; ?></option>
-              <?php } ?>
-            </select>
-            <label>Client</label>
-          </div>
+          <form method="post" action="" class="ajoutPanier">
 
           <div class="input-field ">
-            <select>
+            <select name='prod' required>
               <option value="" disabled selected>selectionner un produit</option>
               <?php while ($recupp=mysql_fetch_assoc($verifp)) { ?>
-              <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation']; ?></option>
+              <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation'].'  qte : '.$recupp['qte']; ?></option>
               <?php } ?>
             </select>
             <label>Produit</label>
           </div>
           <div class="input-field ">
-          <input placeholder="quantite a commander"  type="text" >
+          <input placeholder="quantite a commander"  type="text" name="qtecmd" required>
           <label >Quantite</label>
         </div>
 
-        <button class="btn blue waves-effect">Ajouter au panier</button>
-        
+        <button type="submit" class=" btn blue waves-effect">Ajouter au panier</button>
+        </form>
           
         
 
           <br><br>
         </div>
 
-        <div class="card-panel col s6 offset-s1">
+        <div class="card-panel col s7 offset-s1 center">
           <h5 class=" center">Panier</h5>
           
-          <table>
+          <table class="panier" style="overflow: hidden;">
             <tbody>
               <tr>
+                <th>code Produit</th>
                 <th>Designation</th>
                 <th>Qte</th>
                 <th>PU</th>
@@ -103,6 +95,25 @@
     
             </tbody>
           </table>
+ 
+          <h5 class="total blue white-text">TOTAL : 0 F CFA</h5><br>
+          <form method="post">
+
+          <div class="input-field ">
+            <select required>
+              <option value="" disabled selected>selectionner un client</option>
+              <?php while ($recup=mysql_fetch_assoc($verif)) { ?>
+              <option value="<?php echo $recup['codecli']; ?>"><?php echo $recup['prenom'].' '.$recup['nom'].' code client :'.$recup['codecli']; ?></option>
+              <?php } ?>
+            </select>
+            <label>Client</label>
+          </div>
+
+          
+
+          <button type="submit" class="btn waves-effect blue ">commander</button>
+          </form>
+          <br><br>
 
         </div>
 
@@ -147,7 +158,7 @@
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
-<script src="../js/scriptProd.js"></script>
+<script src="../js/scriptCom.js"></script>
 
 </body>
 </html>
