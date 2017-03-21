@@ -33,12 +33,14 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/materialize.min.css">
 	<link rel="stylesheet" href="../css/myCss.css">
-	<title>scAcces</title>
+  <link rel="icon" type="image/png" href="../image/easystock.png" />
+	<title>Gestion des clients</title>
 </head>
 <body>
 <nav class="nav-extended ">
     <div class="nav-wrapper ">
-      <a href="#" class="brand-logo center">Admin</a>
+      <a href="#" class="brand-logo "><img src="../image/easystock.png" width="60px" height="60px"></a>
+
       <ul id="nav-mobile" class="right">
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
       </ul>
@@ -140,9 +142,9 @@
     <tr>
        <td><?php echo $recup['prenom']; ?></td>
        <td><?php echo $recup['nom']; ?></td>
-       <td><?php echo $recup['tel']; ?></td>
+       <td style="color:#3498db;"><?php echo $recup['tel']; ?></td>
        <td><?php echo $recup['adresse']; ?></td>
-       <td><?php echo $recup['type']; ?></td>
+       <td style="color:#2ecc71;"><?php echo $recup['type']; ?></td>
        <td class="modif"><a href="admin/modifClient.php?id=<?php echo $recup['codecli']; ?>"><img src='../image/modif.png'></a></td>
      <td class="supp"><a href="admin/suppClient.php?id=<?php echo $recup['codecli']; ?>"><img src="../image/supp.png"></a></td>
     </tr>
@@ -211,6 +213,7 @@
           <div class="footer-copyright">
             <div class="container">
             © March 2017 Copyright <p class="right"> Picojazz</p>
+            <div class="center"><img src="../image/easystock.png" width="60px" height="60px"></div>
             </div>
           </div>
         </footer>

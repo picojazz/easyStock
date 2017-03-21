@@ -1,10 +1,10 @@
 .auth{
-	margin-top: 10vh; 
+	padding-top: 15vh; 
 }body{
 	background-color: #bdc3c7;
     height: auto;
 
-	    
+       
 }
 .success{
 	background-color: #2ecc71;
@@ -54,17 +54,21 @@
     background-color: #3498db;
     color: white;
     font-weight: normal;
-    padding: 20px 30px;
+    padding: 15px 20px;
     text-align: center;
     //opacity: 0.9;
+    border-left: 1px solid rgba(255, 255, 255, .5);
   }
   td {
     background-color: rgb(238, 238, 238);
+    //background-color: white;
     //color: rgb(111, 111, 111);
     color:black;
-    padding: 20px 30px;
+    padding: 15px 20px;
     text-align: center;
     //opacity: 0.9;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, .5);
   }.titre{
   //padding-top: 5px;
     //padding-bottom: 5px;

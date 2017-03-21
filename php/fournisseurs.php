@@ -30,12 +30,13 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../css/materialize.min.css">
   <link rel="stylesheet" href="../css/myCss.css">
-  <title>scAcces</title>
+  <link rel="icon" type="image/png" href="../image/easystock.png" />
+  <title>Gestion des fournisseurs</title>
 </head>
 <body>
 <nav class="nav-extended ">
     <div class="nav-wrapper ">
-      <a href="#" class="brand-logo center">Admin</a>
+      <a href="#" class="brand-logo "><img src="../image/easystock.png" width="60px" height="60px"></a>
       <ul id="nav-mobile" class="right">
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
       </ul>
@@ -125,7 +126,7 @@
     <tr>
        <td><?php echo $recup['prenom']; ?></td>
        <td><?php echo $recup['nom']; ?></td>
-       <td><?php echo $recup['tel']; ?></td>
+       <td style="color:#3498db;"><?php echo $recup['tel']; ?></td>
        <td><?php echo $recup['adresse']; ?></td>
        <td class="modif"><a href="admin/modifFour.php?id=<?php echo $recup['codefour']; ?>"><img src='../image/modif.png'></a></td>
      <td class="supp"><a href="admin/suppFour.php?id=<?php echo $recup['codefour']; ?>"><img src="../image/supp.png"></a></td>
@@ -189,11 +190,12 @@
 
     </div>
 
-      <footer class="page-footer">
+        <footer class="page-footer">
           
           <div class="footer-copyright">
             <div class="container">
             © March 2017 Copyright <p class="right"> Picojazz</p>
+            <div class="center"><img src="../image/easystock.png" width="60px" height="60px"></div>
             </div>
           </div>
         </footer>

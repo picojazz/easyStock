@@ -36,12 +36,13 @@
   <link rel="stylesheet" href="../css/materialize.min.css">
   <link rel="stylesheet" href="../css/myCss.css">
   <link rel="stylesheet" type="text/css" media="print" href="../css/print.css" />
-  <title>scAcces</title>
+  <link rel="icon" type="image/png" href="../image/easystock.png" />
+  <title>Gestion des produits</title>
 </head>
 <body>
 <nav class="nav-extended ">
     <div class="nav-wrapper ">
-      <a href="#" class="brand-logo center">Admin</a>
+      <a href="#" class="brand-logo "><img src="../image/easystock.png" width="60px" height="60px"></a>
       <ul id="nav-mobile" class="right ">
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
       </ul>
@@ -161,7 +162,7 @@
     <?php while ($recup=mysql_fetch_array($verif)) { ?>
     <tr>
        <td><?php echo $recup['designation']; ?></td>
-       <td><?php echo $recup['pu']; ?></td>
+       <td style="color:#3498db;"><?php echo $recup['pu']; ?></td>
        <td><?php echo $recup['qte']; ?></td>
        <td class="modif"><a href="admin/modifProd.php?id=<?php echo $recup['codeprod']; ?>"><img src='../image/modif.png'></a></td>
      <td class="supp"><a href="admin/suppProd.php?id=<?php echo $recup['codeprod']; ?>"><img src="../image/supp.png"></a></td>
@@ -221,11 +222,12 @@
 
       
   
-    <footer class="page-footer">
+        <footer class="page-footer">
           
           <div class="footer-copyright">
             <div class="container">
             © March 2017 Copyright <p class="right"> Picojazz</p>
+            <div class="center"><img src="../image/easystock.png" width="60px" height="60px"></div>
             </div>
           </div>
         </footer>

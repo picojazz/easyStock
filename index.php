@@ -7,7 +7,8 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<link rel="stylesheet" href="css/myCss.css">
-	<title>scAcces</title>
+    <link rel="icon" type="image/png" href="image/easystock.png" />
+	<title>EasyStock</title>
 </head>
 <body>
 	
@@ -16,11 +17,13 @@
   
 	
 <div class="container">
+        
 	<div class="row">
 	<?php include 'php/moduleAlert.php'; ?>
-		<div class="col s6 offset-s3 auth">
-			
-				<div class ="card-panel z-depth-3">
+    
+		<div class="col s6  ">
+			     <div class="auth">
+				<div class ="card-panel z-depth-5 ">
 					<ul  class="tabs tabs-fixed-width ">
         				<li class="tab col s3 "><a class="signin" href="#signin"> <span class="blue-text ">Se connecter</span></a></li>
         				<li class="tab col s3 "><a class="signup" href="#signup"> <span class="blue-text ">S'inscrire</span></a></li>
@@ -81,7 +84,14 @@
 
 				
     						
-		</div>
+		</div></div>
+            
+            <div class="col s6 center" style="padding-top: 5vh;">
+                <img src="image/easystock.png">
+                <img src="image/easy.png">
+            </div>
+        
+
 	</div>
 
 	 
