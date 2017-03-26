@@ -14,7 +14,7 @@
 		$reqm=sprintf("SELECT codecmd,datecmd FROM commande ORDER BY codecmd DESC LIMIT 1" ); 
 		$verifm=mysql_query($reqm)or die(mysql_error());
 		$recupm=mysql_fetch_assoc($verifm);
-		echo $recupm['codecmd'];
+		echo $recupm['codecmd']; 
 	}
 		
 	

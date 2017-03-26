@@ -26,7 +26,7 @@
 		 $_SESSION['profil'] = $info['profil']; 
 		
 		 if ($info['profil'] == 'admin') {
-		 	header("location:admin.php?sign=in");
+		 	header("location:home.php?sign=in");
 		 }else{
 		 	header("location:user.php?sign=in");
 				}

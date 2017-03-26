@@ -2,10 +2,15 @@
 	padding-top: 15vh; 
 }body{
 	background-color: #bdc3c7;
-    height: auto;
+    //height: auto;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 
        
-}
+} main {
+    flex: 1 0 auto;
+  }
 .success{
 	background-color: #2ecc71;
 }

@@ -39,7 +39,7 @@
 <body>
 <nav class="nav-extended ">
     <div class="nav-wrapper ">
-      <a href="#" class="brand-logo "><img src="../image/easystock.png" width="60px" height="60px"></a>
+      <a href="home.php" class="brand-logo "><img src="../image/easystock.png" width="60px" height="60px"></a>
 
       <ul id="nav-mobile" class="right">
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
@@ -47,6 +47,7 @@
     </div>
     <div class="nav-content">
       <ul  class="tabs  tabs-fixed-width">
+      <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="home.php">Accueuil</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="admin.php">clients</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fournisseurs.php">fournisseurs</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commandes.php">Commandes</a></li>
