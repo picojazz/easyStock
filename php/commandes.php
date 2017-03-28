@@ -81,7 +81,7 @@
             <label>Produit</label>
           </div>
           <div class="input-field">
-          <input placeholder="quantite a commander" type="number" name="qtecmd" required>
+          <input placeholder="quantite a commander" type="text" name="qtecmd" required>
             
           </div>
           

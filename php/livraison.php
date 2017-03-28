@@ -112,7 +112,7 @@
         </table>
         <br><br>
 
-        <a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+        
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal">

@@ -30,13 +30,26 @@
 
     
 
-    <div style="width: 70%;margin: 0 auto;" class=" auth ">
-    
+    <div style="width: 70%;margin: 0 auto;" class="container auth ">
+
+
+      <?php
+
+$jour = array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
+
+$mois = array("","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+
+$datefr = $jour[date("w")]." ".date("d")." ".$mois[date("n")]." ".date("Y");
+
+echo "<p class='right'>Aujourd'hui le : ". $datefr." </p>";
+
+?> 
+      <br><br>
       <h3 class="center titre">Facture N° <?php echo $codecmd ?></h3><br>
-      <h4><?php echo $recup['prenom'].' '.$recup['nom']; ?><span class="right"><?php echo $recup['datelivr']; ?></span></h4>
+      <h4><?php echo $recup['prenom'].' '.$recup['nom']; ?><span class="right">Date livraison : <?php echo $recup['datelivr']; ?></span></h4><br>
       <h5 class="center ">commande N° <?php echo $codecmd ?></h5><br>
       
-      <table >
+      <table style="width: 70%;margin: 0 auto;">
           <tbody>
             <tr>
               <th>Code produit</th>

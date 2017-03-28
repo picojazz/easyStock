@@ -54,8 +54,9 @@ $(document).ready(function() {
             dataType : "json",   
             success : function(data)
             { 
-              if (qtecmd<=0 || qtecmd>data.qte) {
+              if (qtecmd<=0 || qtecmd > data.qte) {
                   Materialize.toast('erreur quantité', 4000,'red');
+                  console.log(data.qte);
               }else{
 
                 var tot = data.pu * qtecmd;
