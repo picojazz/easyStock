@@ -102,8 +102,8 @@
                 <td><?php echo $recupl['prenom']; ?></td>
                 <td style="color:#2ecc71;"><?php echo $recupl['datelivr']; ?></td>
                 <td style="color:#3498db;"><?php echo number_format($recupl['montant'],0,","," "); ?></td>
-                <td>detail</td>
-                <td>facture</td>
+                <td class="detail"><a href="admin/recupCom.php?id=<?php echo $recupl['codecmd']; ?>"><img src="../image/detail.png"></a></td>
+                <td><a href="facture.php?id=<?php echo $recupl['codecmd']; ?>"><img src="../image/facture.png"></a></td>
                 <td><img src="../image/1.png"></td>
             </tr>
 
@@ -111,6 +111,29 @@
           </tbody>
         </table>
         <br><br>
+
+        <a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 class="center">Modal Header</h4>
+      <table class="mod">
+          <tbody>
+            <tr>
+              <th>Code produit</th>
+              <th>Produit</th>
+              <th>Prix Unitaire</th>
+              <th>Quantite</th>
+              <th>Montant (f cfa)</th>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+    </div>
+    
+  </div>
 
     </div>
         

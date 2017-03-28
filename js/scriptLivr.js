@@ -75,7 +75,40 @@ $(document).ready(function(){
     });
 
 
+    //detail
 
+    $('.tablivrok tbody ').on('click','.detail a',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $this=$(this);
+        
+        $.ajax({
+            url : $(this).attr("href"),  
+            dataType : "json",   
+            success : function(data)
+            {
+            	
+
+            	var a=$('.modal-content table tbody ').find("tr:eq(0)");
+      			$('.modal-content table tbody ').empty().append(a);
+            	$('.modal-content h4').html("commande N° "+data[0].codecmd);
+            	data.forEach(function(d){
+                 $('.modal-content table tbody ').find('tr:eq(0)').after("<tr><td>"+d.codeprod+"</td><td>"+d.designation+"</td><td>"+d.pu+" F</td><td>"+d.qtecmd+"</td><td>"+d.montant+" </td></tr>");
+                 
+                });
+
+            	//alert(JSON.stringify(data));
+
+            	$('#modal1').modal('open');
+
+
+            }   
+                
+           
+        });
+
+        return false;
+    });
 
 
 });
