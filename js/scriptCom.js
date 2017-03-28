@@ -54,7 +54,11 @@ $(document).ready(function() {
             dataType : "json",   
             success : function(data)
             { 
-              var tot = data.pu * qtecmd;
+              if (qtecmd<=0 || qtecmd>data.qte) {
+                  Materialize.toast('erreur quantité', 4000,'red');
+              }else{
+
+                var tot = data.pu * qtecmd;
               som+=tot;
                 Materialize.toast('produit ajouté au panier !', 4000,'green');
                 $('.panier tbody').append($("<tr><td>"+data.codeprod+"</td><td>"+data.designation+"</td><td>"+qtecmd+"</td><td>"+data.pu+"</td><td class='tota'>"+tot+"</td><td><a href='#' class='supp'><img src='../image/supp.png'></a></td></tr>"
@@ -65,6 +69,7 @@ $(document).ready(function() {
             });
 
                 $('.total').html("TOTAL : "+som+" F CFA");
+              }
             }
            
         });

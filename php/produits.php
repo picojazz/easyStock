@@ -97,7 +97,7 @@
 
 <div class="row">
 <h3 class="center titre">Ajout de produit</h3>
-<div class="card-panel col s6 offset-s3">
+<div class="card-panel col s6 offset-s3 z-depth-5">
   
   <div class="row">
     <form method="post" class="col s12" id="formCli" action="#">
@@ -150,7 +150,7 @@
 </div>
 
 
-    <table class="clientTable">
+    <table class="clientTable z-depth-5">
   <tbody>
     <tr>
       <th>Designation</th>

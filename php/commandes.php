@@ -8,7 +8,7 @@
       $reqp="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
       $verifp=mysql_query($reqp);
 
-      $reqt=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod ORDER BY c.codecmd DESC");
+      $reqt=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant,cp.etat FROM commande c,client cl,cmdprod cp,produit p WHERE cp.etat = 0 AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod   ORDER BY c.codecmd DESC");
       $verift=mysql_query($reqt) or die(mysql_error());
 
       $nbAll=mysql_num_rows($verift);
@@ -20,7 +20,7 @@
         $pageActuel = 1 ;
       }
 
-      $reqc=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod ORDER BY c.codecmd DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage");
+      $reqc=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant FROM commande c,client cl,cmdprod cp,produit p WHERE cp.etat = 0 AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod ORDER BY c.codecmd DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage");
       $verifc=mysql_query($reqc) or die(mysql_error());
 
  ?>
@@ -66,7 +66,7 @@
         <?php include 'moduleAlert.php' ?>
       <div class="row">
         <h3 class="center titre">Gestion des commandes</h3>
-        <div class="card-panel col s4 center com">
+        <div class="card-panel col s4 center com z-depth-5">
           <h5 class=" center">commande</h5>
         
           <form method="post" action="" class="ajoutPanier">
@@ -80,6 +80,10 @@
             </select>
             <label>Produit</label>
           </div>
+          <div class="input-field">
+          <input placeholder="quantite a commander" type="number" name="qtecmd" required>
+            
+          </div>
           
 
         <button type="submit" class=" btn blue waves-effect">Ajouter au panier</button>
@@ -89,7 +93,7 @@
 
           <br>        </div>
 
-        <div class="card-panel col s7 offset-s1 center">
+        <div class="card-panel col s7 offset-s1 center z-depth-5">
           <h5 class=" center">Panier</h5>
           
           <table class="panier" style="overflow: hidden;">
@@ -144,7 +148,7 @@
 
     </div>
 
-      <table>
+      <table class="z-depth-5">
             <tbody>
               <tr>
                 <th>Numero Commande</th>

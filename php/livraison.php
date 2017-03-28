@@ -2,8 +2,22 @@
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
 
-    $req=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod GROUP BY c.codecli ORDER BY c.codecli DESC");
+    $req=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 GROUP BY c.codecli ORDER BY c.codecli DESC");
       $verif=mysql_query($req) or die(mysql_error());
+
+      $reqa=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =1 GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC");
+      $verifa=mysql_query($reqa) or die(mysql_error());
+      $nbAll=mysql_num_rows($verifa);
+      $nPage = 8;
+      $page = ceil($nbAll/$nPage);
+      if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $page) {
+       $pageActuel = $_GET['p'] ;
+      }else{
+        $pageActuel = 1 ;
+      }
+
+      $reql=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =1 GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage");
+      $verifl=mysql_query($reql) or die(mysql_error());
       
 
  ?>
@@ -42,8 +56,8 @@
     <div class="container ">
       <h3 class="center titre">Gestions des livraisons</h3>
       <div class="row">
-      <div class="col s4">
-        <div class="card-panel">
+      <div class="col s3">
+        <div class="card-panel z-depth-5">
           <div class="input-field ">
                   
                   <select name="cli">
@@ -58,16 +72,61 @@
 
         </div>
       </div>
-      <div class="tabLivr col s7 offset-s1">
-        
-      </div>
+      <div class="tabLivr col s9 ">
+
+      </div><br><br>
 
       </div>
 
-        <h3 class="center titre">Liste des livraisons</h3>
+        <h3 class="center titre">Liste des commandes livrées</h3><br>
+        <table class="tablivrok z-depth-5">
+          <tbody>
+            <tr>
+              <th>N° commande</th>
+              <th>Datecmd</th>
+              <th>code client</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Date livraison</th>
+              <th>Montant total (f cfa)</th>
+              <th>voir details</th>
+              <th>voir facture</th>
+              <th>info</th>
+            </tr>
+            <?php while($recupl=mysql_fetch_assoc($verifl)) { ?>
+            <tr>
+              <td>N° <?php echo $recupl['codecmd']; ?></td>
+                <td style="color:#2ecc71;"><?php echo $recupl['datecmd']; ?></td>
+                <td><?php echo $recupl['codecli']; ?></td>
+                <td><?php echo $recupl['nom']; ?></td>
+                <td><?php echo $recupl['prenom']; ?></td>
+                <td style="color:#2ecc71;"><?php echo $recupl['datelivr']; ?></td>
+                <td style="color:#3498db;"><?php echo number_format($recupl['montant'],0,","," "); ?></td>
+                <td>detail</td>
+                <td>facture</td>
+                <td><img src="../image/1.png"></td>
+            </tr>
+
+            <?php } ?>
+          </tbody>
+        </table>
+        <br><br>
 
     </div>
         
+      <ul class="pagination center">
+
+        <?php for ($i=1; $i<=$page ; $i++) {  ?>
+      <?php if ($i == $pageActuel){ ?>
+        <li class="active"><a href="livraison.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+      <?php }else{ ?>
+    
+    <li class="waves-effect"><a href="livraison.php?p=<?php echo $i ?>"><?php echo $i ?></a></li>
+    <?php } ?>
+
+        <?php } ?>
+      </ul>
+      <br>
 
       
 	
