@@ -4,6 +4,7 @@ $(document).ready(function() {
     var som=0;
     var cmd=0;
     var res=0;
+    var $d;
 
     $('.indicator').addClass('blue');
     $('.modal').modal();
@@ -47,14 +48,16 @@ $(document).ready(function() {
       e.preventDefault();
 
       var prod = $(this).parent().find('select').val();
-      var qtecmd = $(this).parent().find("input[name=qtecmd]").val();
+      var qtecmd = parseInt($(this).parent().find("input[name=qtecmd]").val());
 
       $.ajax({
             url : 'admin/recupProduit.php?id='+prod,  
             dataType : "json",   
             success : function(data)
             { 
-              if (qtecmd<=0 || qtecmd > data.qte) {
+              
+
+              if (qtecmd<=0 || qtecmd > data.qte || Number.isInteger(qtecmd) === false) {
                   Materialize.toast('erreur quantité', 4000,'red');
                   console.log(data.qte);
               }else{
