@@ -35,14 +35,20 @@
     </div>
 </nav>
 
-    <div class="container center">
+    <div class="container ">
       <div class="row">
-
-      <img src="../image/easystock.png">
-
-      <p>gdfgfdhgdfngnd,fvn,dfnvn,cxnv,;cnxvnxcnvbdjgdfkjgkdfjgdjfklgjdklgkdgdd <br>gfdgdfgdfgdfgdfgdfg gdfghdfg dfgjdfgjkdjgl gdgjkdfjgkdjg dfgjdfkgjkldfjg <br>dlfkdgksgk kgljsdfgj gjigsdg gjizjizkengdgizojgk hizjkzekfodiszrer <br>ortgoerkgjdkgjdkfgkvndfnd jgdogozg,ezrgnifjgkdflgdfgkoer <br>bjbdsfsdfhlsdj gjsjgsfjgkj g skfgjkjsfg fgfjgkfd g <br>jjfkgkd jfdgjkldfjgkjdfk gfjdkjdgdfjg fd <br>hdhfhsdgjkdnfbnjdfjn <br>hfdhfhjdhjjhfjhhjklhsdf jshdfhfsd</p>
-
+      <div style="margin-top: 60px;" class="col s6 center">
+        <div class="card-panel">
+          <h5 class="blue-text">Bienvenue dans EasyStock</h5>
+          <p>sejbfsbfbhddgdgdfgdfgdfgdf <br>dgdfgdfgdfgdfgdfgdfgdfgdfg <br>gfrdrfgdfgdfgdfg</p>
+        </div>
       </div>
+      <div class="col s6 center">
+      <img  src="../image/easystock.png" width="250" height="300">
+      </div>
+      
+
+      </div><br><br><br><br>
 
 
 

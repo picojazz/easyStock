@@ -2,6 +2,28 @@
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
 
+    if (isset($_POST['rech'])) {
+      $rech=$_POST['rech'];
+      $req=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 GROUP BY c.codecli ORDER BY c.codecli DESC");
+      $verif=mysql_query($req) or die(mysql_error());
+
+      $reqa="SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =1 AND (c.codecmd like '%$rech%' OR datecmd like '%$rech%' OR cl.codecli like '%$rech%' OR nom like '%$rech%' OR prenom like '%$rech%' OR datelivr like '%$rech%')  GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC";
+      $verifa=mysql_query($reqa) or die(mysql_error());
+      $nbAll=mysql_num_rows($verifa);
+      $nPage = 8;
+      $page = ceil($nbAll/$nPage);
+      if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $page) {
+       $pageActuel = $_GET['p'] ;
+      }else{
+        $pageActuel = 1 ;
+      }
+
+      $reql="SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =1 AND (c.codecmd like '%$rech%' OR datecmd like '%$rech%' OR cl.codecli like '%$rech%' OR nom like '%$rech%' OR prenom like '%$rech%' OR datelivr like '%$rech%') GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage";
+      $verifl=mysql_query($reql) or die(mysql_error());
+
+
+    }else{
+
     $req=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 GROUP BY c.codecli ORDER BY c.codecli DESC");
       $verif=mysql_query($req) or die(mysql_error());
 
@@ -19,7 +41,7 @@
       $reql=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =1 GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage");
       $verifl=mysql_query($reql) or die(mysql_error());
       
-
+      }
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +100,23 @@
 
       </div>
 
-        <h3 class="center titre">Liste de commande(s) livrée(s)</h3><br>
+      <h3 class="center titre">Liste de commande(s) livrée(s)</h3><br>
+
+  <nav style="width:60%;margin:0 auto;" >
+    <div class="nav-wrapper">
+      <form method="post" action="livraison.php">
+        <div class="input-field">
+          <input id="search" type="search" name="rech">
+          <label class="label-icon" for="search"><i class="material-icons"><img src='../image/rech.png' height="32" width="32"></i></label>
+          <i class="material-icons">&times</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <br><br>
+    
+
+        
         <table class="tablivrok z-depth-5">
           <tbody>
             <tr>
@@ -117,7 +155,7 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4 class="center">Modal Header</h4>
+      <h4 class="titre center">Modal Header</h4><br><br>
       <table class="mod">
           <tbody>
             <tr>

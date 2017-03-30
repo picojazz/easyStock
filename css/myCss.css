@@ -2,9 +2,9 @@
 	padding-top: 15vh; 
 }body{
 	background-color: #bdc3c7;
-    //height: auto;
+    
     display: flex;
-    min-height: 100vh;
+    min-height: 100vh !important;
     flex-direction: column;
 
        
@@ -45,6 +45,7 @@
     background-color: #3498db ;
 }.container{
     width: 95% !important;
+
 }.row div{
     margin-top: 10px;
 }.table {
@@ -93,4 +94,5 @@
   background-color: #3498db !important ;
 }.page-footer{
     background-color: #838383 !important;
+
 }
