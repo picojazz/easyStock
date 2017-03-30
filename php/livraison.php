@@ -78,7 +78,7 @@
 
       </div>
 
-        <h3 class="center titre">Liste des commandes livrées</h3><br>
+        <h3 class="center titre">Liste de commande(s) livrée(s)</h3><br>
         <table class="tablivrok z-depth-5">
           <tbody>
             <tr>
@@ -123,7 +123,7 @@
             <tr>
               <th>Code produit</th>
               <th>Produit</th>
-              <th>Prix Unitaire</th>
+              <th>Prix Unitaire(f cfa)</th>
               <th>Quantite</th>
               <th>Montant (f cfa)</th>
               

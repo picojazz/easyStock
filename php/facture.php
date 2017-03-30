@@ -24,13 +24,13 @@
 	<link rel="stylesheet" href="../css/materialize.min.css">
 	<link rel="stylesheet" href="../css/myCss.css">
   <link rel="icon" type="image/png" href="../image/easystock.png" />
-	<title>Facture</title>
+	<title>Facture N° <?php echo $codecmd; ?></title>
 </head>
 <body>
 
     
-
-    <div style="width: 70%;margin: 0 auto;" class="container auth ">
+      <br><br><br>
+    <div style="width: 70%;margin: 0 auto;" class="container  ">
 
 
       <?php
@@ -55,7 +55,7 @@ echo "<p class='right'>Aujourd'hui le : ". $datefr." </p>";
               <th>Code produit</th>
               <th>Produit</th>
               <th>Quantite</th>
-              <th>Prix unitaire</th>
+              <th>Prix unitaire(f cfa)</th>
               <th>Montant (f cfa)</th>
               
             </tr>

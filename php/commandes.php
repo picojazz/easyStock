@@ -73,7 +73,7 @@
 
           <div class="input-field ">
             <select name='prod' required class="validate">
-              <option value="" disabled selected>selectionner un produit</option>
+              <option value="1" disabled selected>selectionner un produit</option>
               <?php while ($recupp=mysql_fetch_assoc($verifp)) { ?>
               <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation'].'  quantite : '.$recupp['qte']; ?></option>
               <?php } ?>
@@ -93,7 +93,7 @@
 
           <br>        </div>
 
-        <div class="card-panel col s7 offset-s1 center z-depth-5">
+        <div class="card-panel col s7 offset-s1 center  z-depth-5">
           <h5 class=" center">Panier</h5>
           
           <table class="panier" style="overflow: hidden;">
@@ -110,7 +110,7 @@
             </tbody>
           </table>
  
-          <h5 class="total blue white-text">TOTAL : 0 F CFA</h5><br>
+          <h5 class="total blue white-text center">TOTAL : 0 F CFA</h5><br>
           
 
           <div class="input-field col s7 ">
@@ -123,14 +123,14 @@
             <label>Client</label>
           </div><br>
           <div class=" col s7 ">
-            <label>Date de livraison</label>
+            <label class="left">Date de livraison</label>
             <input type="date" class="datepicker" name="date">
             
           </div><br><br>
 
           
-
-          <button  class="cmd btn waves-effect blue ">commander</button>
+          
+          <button   class="cmd btn waves-effect blue ">commander</button>
           
           <br><br>
 
