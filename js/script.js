@@ -4,6 +4,7 @@ $(document).ready(function() {
 
     $('.indicator').addClass('blue');
     $('.modal').modal();
+    $('.collapsible').collapsible();
 
     $('select').material_select();
 

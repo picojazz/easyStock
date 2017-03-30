@@ -39,6 +39,7 @@
     <div class="nav-wrapper ">
       <a href="home.php" class="brand-logo "><img src="../image/easystock.png" width="60px" height="60px"></a>
       <ul id="nav-mobile" class="right ">
+      <li><a href="aide.php"><img  src="../image/aide.png" alt=""></a></li>
         <li><a href="moduleAuthentification.php?erreur=logout">Se deconnecter</a></li>
       </ul>
     </div>
@@ -141,6 +142,7 @@
 
         <div class="row">
           <h4 class="titre center">Liste des Commandes en cours ...</h4>
+          
           
           
 
