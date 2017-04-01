@@ -30,6 +30,7 @@
 
     
       <br><br><br>
+      <fieldset>
     <div style="width: 70%;margin: 0 auto;" class="container  ">
 
 
@@ -78,6 +79,7 @@ echo "<p class='right'>Aujourd'hui le : ". $datefr." </p>";
      
 
     </div>
+    </fieldset>
         
       
   

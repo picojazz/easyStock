@@ -49,7 +49,7 @@ $(document).ready(function() {
 
       var prod = $(this).parent().find('select').val();
       var qtecmd = parseInt($(this).parent().find("input[name=qtecmd]").val());
-
+      var th = $(this);
       $.ajax({
             url : 'admin/recupProduit.php?id='+prod,  
             dataType : "json",   
@@ -67,11 +67,9 @@ $(document).ready(function() {
                 Materialize.toast('produit ajouté au panier !', 4000,'green');
                 $('.panier tbody').append($("<tr><td>"+data.codeprod+"</td><td>"+data.designation+"</td><td>"+qtecmd+"</td><td>"+data.pu+"</td><td class='tota'>"+tot+"</td><td><a href='#' class='supp'><img src='../image/supp.png'></a></td></tr>"
                   ).hide(2).fadeIn(2000));
-                var inputs = document.querySelectorAll(".com input");
-            inputs.forEach( function(input) {
-                input.value="";
-            });
+               
 
+                $('.qtecmdd').parent().find("input[name=qtecmd]").val("");
                 $('.total').html("TOTAL : "+som+" F CFA");
               }
             }

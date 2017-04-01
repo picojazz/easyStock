@@ -2,6 +2,9 @@
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
 
+    $reqf="SELECT codefour,nom,prenom FROM fournisseur ";
+      $veriff=mysql_query($reqf);
+
     $reqm="SELECT codeprod FROM produit ";
       $verifm=mysql_query($reqm);
       $nbAll=mysql_num_rows($verifm);
@@ -22,8 +25,8 @@
       $req="SELECT * FROM produit WHERE designation like '%$rech%' OR pu like '%$rech%' OR qte like '%$rech%' ";
       $verif=mysql_query($req);
     }else{
-      $req="SELECT * FROM produit ORDER BY codeprod DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage";
-      $verif=mysql_query($req);
+      $req="SELECT codeprod,designation,pu,qte,nom,prenom FROM produit,fournisseur f WHERE produit.codefour=f.codefour  ORDER BY codeprod DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage";
+      $verif=mysql_query($req) or die(mysql_error());
       }
       $req1="SELECT * FROM produit  ";
       $verif1=mysql_query($req1);
@@ -118,6 +121,17 @@
           <label>Quantite</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <select name="four" id="" required>
+          
+      <?php while ($recupf = mysql_fetch_assoc($veriff)) { ?>
+          <option value="<?php echo $recupf['codefour']; ?>"><?php echo $recupf['prenom'].' '.$recupf['nom']; ?></option>
+      <?php } ?>
+          </select>
+          <label>fournisseur</label>
+        </div>
+      </div>
       <button class="btn blue"  type="submit" id="addCli">Ajouter</button>
       
     </form>
@@ -160,6 +174,7 @@
       <th>Designation</th>
       <th>Prix Unitaire</th>
       <th>quantite</th>
+      <th>fournisseur</th>
       <th>modifier</th>
       <th>supprimer</th>
       
@@ -169,6 +184,7 @@
        <td><?php echo $recup['designation']; ?></td>
        <td style="color:#3498db;"><?php echo $recup['pu']; ?></td>
        <td><?php echo $recup['qte']; ?></td>
+       <td><?php echo $recup['prenom'].' '.$recup['nom']; ?></td>
        <td class="modif"><a href="admin/modifProd.php?id=<?php echo $recup['codeprod']; ?>"><img src='../image/modif.png'></a></td>
      <td class="supp"><a href="admin/suppProd.php?id=<?php echo $recup['codeprod']; ?>"><img src="../image/supp.png"></a></td>
     </tr>

@@ -12,8 +12,8 @@ $(document).ready(function() {
     	$(this).parent().fadeOut();
     });
 
-    //client
-            //add client
+    //produit
+            //add produit
     $('#formCli').on('submit',function  (e) {
         e.stopPropagation();
         e.preventDefault();
@@ -21,12 +21,14 @@ $(document).ready(function() {
         var designation = $(this).find("input[name=designation]").val();
         var qte = $(this).find("input[name=qte]").val();
         var pu = $(this).find("input[name=pu]").val();
+        var four = $(this).find("select").val();
+        var fourn = $(this).find("select option:selected").text();
         var test = parseInt(pu);
         var test1 = parseInt(qte);
         if (Number.isInteger(test) == true && Number.isInteger(test1) == true) {
 
         
-        $.post("admin/addProd.php",{qte: qte, pu: pu, designation: designation},function(data){
+        $.post("admin/addProd.php",{qte: qte, pu: pu, designation: designation,four : four},function(data){
             if (data =="non") {
                 $('#addCli').removeClass("blue").addClass("red").text("erreur de saisie : champs vides");
             setTimeout(function (){ 
@@ -38,7 +40,7 @@ $(document).ready(function() {
              $('#addCli').removeClass("green").addClass("blue").text("ajouter") ;
              
             },3000);
-            $('.clientTable tbody tr:first-child').after($("<tr><td>"+designation+"</td><td>"+test+"</td><td>"+test1+"</td><td class='modif'><a href='admin/modifProd.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppProd.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
+            $('.clientTable tbody tr:first-child').after($("<tr><td>"+designation+"</td><td style='color:#3498db;'>"+test+"</td><td>"+test1+"</td><td>"+fourn+"</td><td class='modif'><a href='admin/modifProd.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppProd.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
           Materialize.toast('nouveau produit ajouté !', 4000,'green');
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {

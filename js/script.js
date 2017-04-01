@@ -40,7 +40,7 @@ $(document).ready(function() {
              $('#addCli').removeClass("green").addClass("blue").text("ajouter") ;
              
             },3000);
-            $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td>"+test+"</td><td>"+adresse+"</td><td>"+type+"</td><td class='modif'><a href='admin/modifClient.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppClient.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
+            $('tbody tr:first-child').after($("<tr><td>"+prenom+"</td><td>"+nom+"</td><td style='color:#3498db;'>"+test+"</td><td>"+adresse+"</td><td style='color:#2ecc71;'>"+type+"</td><td class='modif'><a href='admin/modifClient.php?id="+data+"'><img src='../image/modif.png'></a></td><td class='supp'><a href='admin/suppClient.php?id="+data+"'><img src='../image/supp.png'></a></td></tr>").hide(2).fadeIn(1000));
           Materialize.toast('nouveau client ajouté !', 4000,'green');
             var inputs = document.querySelectorAll("#formCli input");
             inputs.forEach( function(input) {
