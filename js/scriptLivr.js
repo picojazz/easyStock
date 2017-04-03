@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
 
 
-    $('.livr').on('click',function(){
+    $('.livr').on('submit',function(){
 
     	var codecmd = $(this).parent().find('select').val();
     	$.ajax({
@@ -40,7 +40,7 @@ $(document).ready(function(){
             }
            
         });
-
+        return false;
     });
 
 

@@ -27,6 +27,7 @@
         <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="home.php">Acceuil</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="admin.php">clients</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fournisseurs.php">fournisseurs</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fourniture.php">fournitures</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commandes.php">Commandes</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="produits.php">stocks</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="livraison.php">livraison</a></li>
@@ -37,6 +38,7 @@
 </nav>
 
     <div class="container ">
+    <?php include 'moduleAlert.php' ?>
       <div class="row">
       <div style="margin-top: 60px;" class="col s6 center">
         <div class="card-panel">

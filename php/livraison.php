@@ -67,6 +67,7 @@
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="home.php">Acceuil</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="admin.php">clients</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fournisseurs.php">fournisseurs</a></li>
+        <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="fourniture.php">fournitures</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2" href="commandes.php">Commandes</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 " href="produits.php">stocks</a></li>
         <li class="tab "><a target="_self" class="blue-text text-darken-2 active" href="livraison.php">livraison</a></li>
@@ -81,9 +82,10 @@
       <div class="row">
       <div class="col s3">
         <div class="card-panel z-depth-5">
+        <form method="post" action="" class="livr">
           <div class="input-field ">
                   
-                  <select name="cli">
+                  <select name="cli" required>
                     <option value="" disabled selected>selectionner un client</option>
                     <?php while ($recup=mysql_fetch_assoc($verif)) { ?>
               <option value="<?php echo $recup['codecli']; ?>"><?php echo $recup['prenom'].'  '.$recup['nom']; ?></option>
@@ -91,9 +93,10 @@
                   </select>
                   <label for="">Choix client</label>
           </div>
-          <button class="livr btn waves-effect blue">Valider</button>
+          <button type="submit" class=" btn waves-effect blue">Valider</button>
 
         </div>
+        </form>
       </div>
       <div class="tabLivr col s9 ">
 
