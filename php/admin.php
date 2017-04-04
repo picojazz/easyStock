@@ -89,13 +89,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input  type="text"  name="tel" >
           <label >telephone</label>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
+      
+      
+        <div class="input-field col s6">
                   
                   <select name="type">
                     <option value="personne">personne</option>

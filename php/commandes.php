@@ -132,7 +132,57 @@
 
           
           
-          <button   class="cmd btn waves-effect blue ">commander</button>
+          <button   class="cmd btn waves-effect blue ">commander</button><br><br><br>
+          <a style="font-size: 20px;color: red;" class="modal-trigger " href="#modal1">nouveau client ?</a>
+
+  
+  <div id="modal1" class="modal modal-fixed-footer">
+  <form method="post" class="col s12" id="formCli" action="#">
+    <div class="modal-content">
+      <h4 class="titre center">Ajout de client</h4>
+      
+    
+      <div class="row">
+        <div class="input-field col s6">
+          <input   type="text"  name="prenom" >
+          <label >Prenom</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text"  name="nom" >
+          <label >Nom</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text"  name="adresse" >
+          <label>Adresse</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input  type="text"  name="tel" >
+          <label >telephone</label>
+        </div>
+      
+      
+        <div class="input-field col s6">
+                  
+                  <select name="type">
+                    <option value="personne">personne</option>
+                    <option value="entreprise">entreprise</option>
+                  </select>
+                  <label for="">Type</label>
+                </div>
+      </div>
+         
+    </div>
+    <div class="row">
+    <div class="modal-footer col s12">
+      <button class="btn blue"  type="submit" id="addCli">Ajouter</button>
+    </div>
+    </div>
+    </form>
+  </div>
           
           <br><br>
 
