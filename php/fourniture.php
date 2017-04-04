@@ -5,6 +5,26 @@
     $reqp="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
     $verifp=mysql_query($reqp);
 
+    if (isset($_POST['rech'])) {
+      $rech=$_POST['rech'];
+      $reqt="SELECT datefournt,designation,qteav,qtefr,pu,pu*qtefr as montant  FROM fourniture f,prodfournt pf,produit p WHERE f.codefournt=pf.codefournt AND pf.codeprod=p.codeprod ORDER BY f.codefournt DESC ";
+    $verift=mysql_query($reqt)or die(mysql_error());
+    $nbAll=mysql_num_rows($verift);
+      $nPage = 10;
+      $page = ceil($nbAll/$nPage);
+      if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $page) {
+       $pageActuel = $_GET['p'] ;
+      }else{
+        $pageActuel = 1 ;
+      }
+
+      $reqc="SELECT datefournt,designation,qteav,qtefr,pu,pu*qtefr as montant  FROM fourniture f,prodfournt pf,produit p WHERE f.codefournt=pf.codefournt AND pf.codeprod=p.codeprod AND (datefournt like '%$rech%' OR designation like '%$rech%' OR qteav like '%$rech%' OR qtefr like '%$rech%' OR pu like '%$rech%' ) ORDER BY f.codefournt DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage";
+      $verifc=mysql_query($reqc)or die(mysql_error());
+
+
+
+
+        }else{
     $reqt="SELECT datefournt,designation,qteav,qtefr,pu,pu*qtefr as montant  FROM fourniture f,prodfournt pf,produit p WHERE f.codefournt=pf.codefournt AND pf.codeprod=p.codeprod ORDER BY f.codefournt DESC ";
     $verift=mysql_query($reqt)or die(mysql_error());
     $nbAll=mysql_num_rows($verift);
@@ -18,7 +38,7 @@
 
       $reqc="SELECT datefournt,designation,qteav,qtefr,pu,pu*qtefr as montant  FROM fourniture f,prodfournt pf,produit p WHERE f.codefournt=pf.codefournt AND pf.codeprod=p.codeprod ORDER BY f.codefournt DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage";
       $verifc=mysql_query($reqc)or die(mysql_error());
-
+        }
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +139,22 @@
       </div>
       <div class="row">
           <h4 class="titre center">Liste des fournitures</h4>
-          
+
+          <nav style="width:60%;margin:0 auto;" >
+    <div class="nav-wrapper">
+      <form method="post" action="fourniture.php">
+        <div class="input-field">
+          <input id="search" type="search" name="rech">
+          <label class="label-icon" for="search"><i class="material-icons"><img src='../image/rech.png' height="32" width="32"></i></label>
+          <i class="material-icons">&times</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <br>
+          <div class="center">
+    <a href="fourniture.php"  ><img src="../image/refresh.png"></a>
+    </div>
 
       </div>
 
