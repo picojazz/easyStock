@@ -1,6 +1,6 @@
 <?php 
     session_start();
-if ($_SESSION['login'] =="" && $_SESSION['profil'] == 'user' ) {
+if ($_SESSION['login'] ==""  ) {
     header("Location:../index.php?erreur=intru");}
     include 'moduleConnexion.php';
       $codecli = $_SESSION['codecli'];
