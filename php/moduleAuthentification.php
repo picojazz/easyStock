@@ -6,26 +6,35 @@
 
 
 		$login=mysql_real_escape_string(htmlspecialchars($_POST['login']));
-		$pass=md5(mysql_real_escape_string(htmlspecialchars($_POST['password'])));
+		$pass=mysql_real_escape_string(htmlspecialchars($_POST['password']));
 		$profil=mysql_real_escape_string(htmlspecialchars($_POST['profil']));
 
-		$req=sprintf("SELECT * FROM users WHERE login='$login' AND password='$pass' AND profil='$profil'" ); 
+		if ($profil == 'admin') {
+			$pass=md5(mysql_real_escape_string(htmlspecialchars($_POST['password'])));
+			$req=sprintf("SELECT * FROM users WHERE login='$login' AND password='$pass' AND profil='$profil'" ); 
 		$verif=mysql_query($req)or die(mysql_error());
 		$info=mysql_fetch_assoc($verif);
 		$user=mysql_num_rows($verif);
+		
+		}else{
+			$req=sprintf("SELECT prenom as login,nom,codecli  FROM client WHERE prenom='$login' AND tel='$pass' " ); 
+		$verif=mysql_query($req)or die(mysql_error());
+		$info=mysql_fetch_assoc($verif);
+		$user=mysql_num_rows($verif);
+		}
+
 		
 		
 		if($user){
 			
 			session_register("authentification"); 
 		
-		
+		 $_SESSION['codecli'] = $info['codecli'];
 		 $_SESSION['login'] = $info['login']; 
-		 $_SESSION['nom'] = $info['nom']; 
-		 $_SESSION['prenom'] = $info['prenom']; 
-		 $_SESSION['profil'] = $info['profil']; 
+		 $_SESSION['nom'] = $info['nom'];  
+		 $_SESSION['profil'] = $profil; 
 		
-		 if ($info['profil'] == 'admin') {
+		 if ($profil == 'admin') {
 		 	header("location:home.php?sign=in");
 		 }else{
 		 	header("location:user.php?sign=in");
@@ -65,7 +74,7 @@
 
 	//deconnexion
 	if(isset($_GET['erreur']) && $_GET['erreur'] == 'logout'){ 
-	$prenom = $_SESSION['prenom']; 
+	$prenom = $_SESSION['login']; 
 	session_unset("authentification");
 	header("Location:../index.php?erreur=delog&prenom=$prenom");
 }

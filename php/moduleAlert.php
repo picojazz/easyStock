@@ -13,7 +13,7 @@
     <?php } ?>
 
     <?php if(isset($_GET['sign']) && ($_GET['sign'] == "in")) {  ?>
-    <p class="alert success"><span class="closebtn">&times</span>Connexion reussie ! bienvenue <?php echo $_SESSION['prenom'];?> </p>
+    <p class="alert success"><span class="closebtn">&times</span>Connexion reussie ! bienvenue <?php echo $_SESSION['login'];?> </p>
     <?php } ?>
     <?php if(isset($_GET['sign']) && ($_GET['sign'] == "no")) {  ?>
     <p class="alert error"><span class="closebtn">&times</span>Echec de l'inscription </p>
