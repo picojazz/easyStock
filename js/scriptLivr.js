@@ -16,6 +16,14 @@ $(document).ready(function(){
 
 
     $('.livr').on('submit',function(){
+        if ($('#desi').val() != "" ) {
+      var text1 = $('#desi').val() ;
+      
+            var val =$('#selectprod option').filter(function () { return this.text == text1; }).val();
+      //alert(val);
+      $("#selectprod").val(val);
+      console.log(val);
+    }
 
     	var codecmd = $(this).parent().find('select').val();
     	$.ajax({
@@ -23,6 +31,9 @@ $(document).ready(function(){
             dataType : "json",   
             success : function(data)
             {
+                if (data == "") {
+                    Materialize.toast('choisissez un client', 4000,'red');
+                }else{
                $('.tabLivr').empty();
                var th = '<table class="tabprod z-depth-5"><tbody><tr><th>codecmd</th><th>datecmd</th><th>codeprod</th><th>produit</th><th>pu</th><th>qtecmd</th><th>qte livrée</th><th>montant</th><th>Etat</th></tr></tbody></table>'
                $('.tabLivr').append(th);
@@ -34,7 +45,7 @@ $(document).ready(function(){
                });
                
 
-                
+               } 
 
 
             }

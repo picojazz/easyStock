@@ -2,6 +2,9 @@
     include 'moduleTestUser.php';
     include 'moduleConnexion.php';
 
+    $reqg=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 GROUP BY c.codecli ORDER BY c.codecli DESC");
+      $verifg=mysql_query($reqg) or die(mysql_error());
+
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
       $req=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 GROUP BY c.codecli ORDER BY c.codecli DESC");
@@ -49,6 +52,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/materialize.min.css">
 	<link rel="stylesheet" href="../css/myCss.css">
+  <link rel="stylesheet" href="../css/awesomplete.css">
   <link rel="icon" type="image/png" href="../image/easystock.png" />
 	<title>Gestions des livraisons</title>
 </head>
@@ -83,9 +87,11 @@
       <div class="col s3">
         <div class="card-panel z-depth-5">
         <form method="post" action="" class="livr">
+
+          <input  class="awesomplete" list="mylist" type="text" placeholder="ou saisir le client" name="des" id="desi"><p>ou</p>
           <div class="input-field ">
                   
-                  <select name="cli" required>
+                  <select name="cli" id="selectprod">
                     <option value="" disabled selected>selectionner un client</option>
                     <?php while ($recup=mysql_fetch_assoc($verif)) { ?>
               <option value="<?php echo $recup['codecli']; ?>"><?php echo $recup['prenom'].'  '.$recup['nom']; ?></option>
@@ -209,7 +215,11 @@
           </div>
         </footer>
   
-	
+	 <datalist id="mylist" style="display:none">
+            <?php while ( $recupg=mysql_fetch_assoc($verifg)) { ?>
+            <option><?php echo $recupg['prenom'].'  '.$recupg['nom']; ?></option>
+            <?php } ?>
+          </datalist>
 
 
 
@@ -217,6 +227,7 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/scriptLivr.js"></script>
+<script src="../js/awesomplete.js"></script>
 
 
 </body>
