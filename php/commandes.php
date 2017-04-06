@@ -4,6 +4,10 @@
 
       $req="SELECT codecli,prenom,nom FROM client ORDER BY codecli DESC ";
       $verif=mysql_query($req);
+      $reqr="SELECT codecli,prenom,nom FROM client ORDER BY codecli DESC ";
+      $verifr=mysql_query($reqr);
+      $reql="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
+    $verifl=mysql_query($reql);
 
       $reqp="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
       $verifp=mysql_query($reqp);
@@ -30,6 +34,7 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../css/materialize.min.css">
   <link rel="stylesheet" href="../css/myCss.css">
+  <link rel="stylesheet" href="../css/awesomplete.css">
   <link rel="stylesheet" type="text/css" media="print" href="../css/print.css" />
   <link rel="icon" type="image/png" href="../image/easystock.png" />
   <title>Gestion des commandes</title>
@@ -74,14 +79,15 @@
           <form method="post" action="" class="ajoutPanier">
 
           <div class="input-field ">
-            <select name='prod' required class="validate">
+            <select name='prod'  class="validate" id="selectprod">
               <option value="1" disabled selected>selectionner un produit</option>
               <?php while ($recupp=mysql_fetch_assoc($verifp)) { ?>
               <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation'].'  quantite : '.$recupp['qte']; ?></option>
               <?php } ?>
             </select>
             <label>Produit</label>
-          </div>
+          </div><p>ou</p>
+          <input  class="awesomplete" list="mylist" type="text" placeholder="ou saisir la designation" name="des" id="desi">
           <div class="input-field qtecmdd">
           <input placeholder="quantite a commander"  type="text" name="qtecmd" required>
             
@@ -114,21 +120,24 @@
  
           <h5 class="total blue white-text center">TOTAL : 0 F CFA</h5><br>
           
-
+          
           <div class="input-field col s7 ">
-            <select  required>
+            <select id="selectcli"  required>
               <option value="" disabled selected>selectionner un client</option>
               <?php while ($recup=mysql_fetch_assoc($verif)) { ?>
               <option value="<?php echo $recup['codecli']; ?>"><?php echo $recup['prenom'].' '.$recup['nom'].' code client :'.$recup['codecli']; ?></option>
               <?php } ?>
             </select>
             <label>Client</label>
-          </div><br>
+          </div>
+          <div class="col s7">
+          <p>ou</p>
+          <input  class="awesomplete" list="mylist1" type="text" placeholder="ou saisir le client" name="des" id="cli"></div>
           <div class=" col s7 ">
             <label class="left">Date de livraison</label>
             <input type="date" class="datepicker" name="date">
             
-          </div><br><br>
+          </div><br><br><br><br><br>
 
           
           
@@ -261,7 +270,17 @@
         </footer>
 
   
-  
+  <datalist id="mylist" style="display:none">
+            <?php while ( $recupl=mysql_fetch_assoc($verifl)) { ?>
+            <option><?php echo $recupl['designation'].'  quantite : '.$recupl['qte']; ?></option>
+            <?php } ?>
+          </datalist>
+
+          <datalist id="mylist1" style="display:none">
+            <?php while ( $recupr=mysql_fetch_assoc($verifr)) { ?>
+            <option><?php echo $recupr['prenom'].' '.$recupr['nom'].' code client :'.$recupr['codecli']; ?></option>
+            <?php } ?>
+          </datalist>
 
 
 
@@ -269,6 +288,7 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/scriptCom.js"></script>
+<script src="../js/awesomplete.js"></script>
 
 </body>
 </html>

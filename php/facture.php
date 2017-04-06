@@ -1,5 +1,7 @@
 <?php 
-    include 'moduleTestUser.php';
+    session_start();
+if ($_SESSION['login'] ==""  ) {
+    header("Location:../index.php?erreur=intru");}
     include 'moduleConnexion.php';
     $tot = 0;
 

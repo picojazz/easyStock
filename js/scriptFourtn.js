@@ -18,6 +18,13 @@ $(document).ready(function(){
 
     $('.ajoutPanier').on('submit',function(e){
       e.preventDefault();
+      if ($('#desi').val() != "" ) {
+      var text1 = $('#desi').val() ;
+            var val =$('#selectprod option').filter(function () { return $(this).html() == text1; }).val();
+      //alert(val);
+      $("#selectprod").val(val);
+      console.log(val);
+    }
 
       var prod = $(this).parent().find('select').val();
       var qtecmd = parseInt($(this).parent().find("input[name=qtecmd]").val());
@@ -34,7 +41,11 @@ $(document).ready(function(){
             success : function(data)
             { 
               
-
+              if (data.codeprod == undefined) {
+                Materialize.toast("ce produit n'existe pas", 4000,'red');
+                $('.qtecmdd').parent().find("input[name=qtecmd]").val("");
+                $('#desi').val("");
+              }else{
               
 
                 var tot = data.pu * qtecmd;
@@ -46,7 +57,8 @@ $(document).ready(function(){
 
                 $('.qtecmdd').parent().find("input[name=qtecmd]").val("");
                 $('.total').html("TOTAL : "+som+" F CFA");
-              
+                $('#desi').val("");
+              }
             }
            
         });
@@ -128,7 +140,18 @@ $(document).ready(function(){
     });
  
 
+   /* $('#desi').on("onchange",function(){
 
+      var text1 = $(this).val() ;
+      console.log(text1);
+      var val =$('#selectprod option').filter(function () { return $(this).html() == text1; }).val();
+      //alert(val);
+      $("#selectprod").val(val);
+      
+
+
+
+    });*/
 
 
 });

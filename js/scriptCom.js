@@ -46,6 +46,14 @@ $(document).ready(function() {
 
     $('.ajoutPanier').on('submit',function(e){
       e.preventDefault();
+      if ($('#desi').val() != "" ) {
+      var text1 = $('#desi').val() ;
+      
+            var val =$('#selectprod option').filter(function () { return this.text == text1; }).val();
+      //alert(val);
+      $("#selectprod").val(val);
+      console.log(val);
+    }
 
       var prod = $(this).parent().find('select').val();
       var qtecmd = parseInt($(this).parent().find("input[name=qtecmd]").val());
@@ -56,6 +64,11 @@ $(document).ready(function() {
             success : function(data)
             { 
               
+              if (data.codeprod == undefined) {
+                Materialize.toast("ce produit n'existe pas", 4000,'red');
+                $('.qtecmdd').parent().find("input[name=qtecmd]").val("");
+                $('#desi').val("");
+              }else{
 
               if (qtecmd<=0 || qtecmd > data.qte || Number.isInteger(qtecmd) === false) {
                   Materialize.toast('erreur quantité', 4000,'red');
@@ -68,17 +81,18 @@ $(document).ready(function() {
                 $('.panier tbody').append($("<tr><td>"+data.codeprod+"</td><td>"+data.designation+"</td><td>"+qtecmd+"</td><td>"+data.pu+"</td><td class='tota'>"+tot+"</td><td><a href='#' class='supp'><img src='../image/supp.png'></a></td></tr>"
                   ).hide(2).fadeIn(2000));
                
-
+                $('#desi').val("");
                 $('.qtecmdd').parent().find("input[name=qtecmd]").val("");
                 $('.total').html("TOTAL : "+som+" F CFA");
               }
+            }
             }
            
         });
 
       
 
-
+      
 
       return false;
     });
@@ -99,6 +113,14 @@ $(document).ready(function() {
 
     $('.cmd').on('click',function(e){
       e.preventDefault();
+      if ($('#cli').val() != "" ) {
+      var text1 = $('#cli').val() ;
+      
+            var val =$('#selectcli option').filter(function () { return this.text == text1; }).val();
+      //alert(val);
+      $("#selectcli").val(val);
+      console.log(val);
+    }
       var datelivr =$(this).parent().find('input[name=date]').val();
       console.log(datelivr);
       var codecli =$(this).parent().find('select').val();

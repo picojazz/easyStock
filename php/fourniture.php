@@ -4,6 +4,8 @@
 
     $reqp="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
     $verifp=mysql_query($reqp);
+    $reql="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
+    $verifl=mysql_query($reql);
 
     if (isset($_POST['rech'])) {
       $rech=$_POST['rech'];
@@ -46,6 +48,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/materialize.min.css">
 	<link rel="stylesheet" href="../css/myCss.css">
+  <link rel="stylesheet" href="../css/awesomplete.css">
   <link rel="icon" type="image/png" href="../image/easystock.png" />
 	<title>Gestions de fournitures</title>
 </head>
@@ -79,18 +82,21 @@
         <h3 class="center titre">Mise a jour du Stock</h3>
         <div class="card-panel col s4 center com z-depth-5">
           <h5 class=" center">Produits</h5>
-        
-          <form method="post" action="" class="ajoutPanier">
 
+          
+
+          <form method="post" action="" class="ajoutPanier">
+            
           <div class="input-field ">
-            <select name='prod' required class="validate">
+            <select name='prod'  class="validate" id="selectprod">
               <option value="1" disabled selected>selectionner un produit</option>
               <?php while ($recupp=mysql_fetch_assoc($verifp)) { ?>
               <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation']; ?></option>
               <?php } ?>
             </select>
             <label>Produit</label>
-          </div>
+          </div><p>ou</p>
+          <input  class="awesomplete" list="mylist" type="text" placeholder="ou saisir la designation" name="des" id="desi">
           <div class="input-field qtecmdd">
           <input placeholder="quantite a fournir"  type="text" name="qtecmd" required>
             
@@ -179,9 +185,16 @@
                 <td><?php echo $recupc['pu']; ?></td>
                 <td><?php echo $recupc['montant']; ?></td>
               </tr>
+
     <?php } ?>
             </tbody>
           </table>
+          <datalist id="mylist" style="display:none">
+            <?php while ( $recupl=mysql_fetch_assoc($verifl)) { ?>
+            <option><?php echo $recupl['designation']; ?></option>
+            <?php } ?>
+          </datalist>
+
           <br>
             <ul class="pagination center">
 
@@ -220,6 +233,7 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/scriptFourtn.js"></script>
+<script src="../js/awesomplete.js"></script>
 
 </body>
 </html>
