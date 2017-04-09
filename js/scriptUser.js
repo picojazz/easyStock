@@ -77,7 +77,18 @@ $(document).ready(function(){
         return false;
     });
 
-
+        $('.tablcom').on('click','.supp a',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var codecmd = $(this).parents('tr').find('td:eq(0)').text();
+        var codeprod = $(this).parents('tr').find('td:eq(2)').text();
+        var $this=$(this);
+        $.post($(this).attr("href"),{codecmd: codecmd,codeprod:codeprod},function(data){
+            $this.parents('tr').fadeOut();
+            Materialize.toast('produit supprimé de la commande!', 4000,'green');
+        });
+        return false;
+            });
 
 
 });

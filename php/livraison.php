@@ -88,7 +88,7 @@
         <div class="card-panel z-depth-5">
         <form method="post" action="" class="livr">
 
-          <input  class="awesomplete" list="mylist" type="text" placeholder="ou saisir le client" name="des" id="desi"><p>ou</p>
+          <input  class="awesomplete" list="mylist" type="text" placeholder=" saisir le client" name="des" id="desi"><p>ou</p>
           <div class="input-field ">
                   
                   <select name="cli" id="selectprod">

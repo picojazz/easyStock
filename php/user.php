@@ -44,6 +44,9 @@ if ($_SESSION['login'] ==""  ) {
             <li>NB de commande en cours : <strong class="right blue-text"><?php echo $rowc; ?></strong></li>
             <li>NB de commande livrée : <strong class="right blue-text"><?php echo $rowl; ?></strong></li>
           </div>
+          <div style="font-size: 20px;" class="col s6 offset-s2 card-panel">
+            <p class="center">fsgbfjdngbjfndxjnjdfnjvdnfjgvndfjnjdfngvdfjngefhsrnfsnfdnjdk <br>gfsnknkjnfndfgjfkdngjnxdfkjgnfjsvf <br>kfsfkgnsnkjsngpsogjs,pggjjjksldfkd <br>dfnjsfsfknfdjdkjmdkjsjosjfvkdd <br>dffff,jksdjdifjskfkqdnsvigjnsj</p>
+          </div>
         </div>
         <div class="row"><br>
           <h4 class="titre center">Liste des commandes en cours...</h4><br>
@@ -61,6 +64,7 @@ if ($_SESSION['login'] ==""  ) {
                 <th>Date Livraison</th>
                 <th>Qte Livrée</th>
                 <th>reste a livée</th>
+                <th>Supprimer</th>
               </tr>
       <?php while ( $recupc=mysql_fetch_assoc($verifc)) { ?>
               <tr>
@@ -74,6 +78,7 @@ if ($_SESSION['login'] ==""  ) {
                 <td style="color:#2ecc71;"><?php echo $recupc['datelivr']; ?></td>
                 <td style="color:#3498db;"><?php echo $recupc['qtelivr']; ?></td>
                 <td style="color:red;"><?php echo $recupc['qterestant']; ?></td>
+                <td class="supp"><a href="admin/suppcmdprod.php"><img src="../image/supp.png"></a></td>
               </tr>
     <?php } ?>
             </tbody>
