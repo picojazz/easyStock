@@ -3,6 +3,7 @@ $(document).ready(function(){
 
 	var $this;
     var $id;
+    var som=0;
 
     $('.indicator').addClass('blue');
     $('.modal').modal();
@@ -89,6 +90,82 @@ $(document).ready(function(){
         });
         return false;
             });
+
+
+
+        $('.puc').on('click',function(){
+            $(this).fadeOut();
+            $('.comm .row').slideDown('slow');
+        });
+
+
+
+        // add panier
+
+    $('.ajoutPanier').on('submit',function(e){
+      e.preventDefault();
+      if ($('#desi').val() != "" ) {
+      var text1 = $('#desi').val() ;
+      
+            var val =$('#selectprod option').filter(function () { return this.text == text1; }).val();
+      //alert(val);
+      $("#selectprod").val(val);
+      console.log(val);
+    }
+
+      var prod = $(this).parent().find('select').val();
+      var qtecmd = parseInt($(this).parent().find("input[name=qtecmd]").val());
+      var th = $(this);
+      $.ajax({
+            url : 'admin/recupProduit.php?id='+prod,  
+            dataType : "json",   
+            success : function(data)
+            { 
+              
+              if (data.codeprod == undefined) {
+                Materialize.toast("ce produit n'existe pas", 4000,'red');
+                $('.qtecmdd').parent().find("input[name=qtecmd]").val("");
+                $('#desi').val("");
+              }else{
+
+              if (qtecmd<=0 || qtecmd > data.qte || Number.isInteger(qtecmd) === false) {
+                  Materialize.toast('erreur quantité', 4000,'red');
+                  console.log(data.qte);
+              }else{
+
+                var tot = data.pu * qtecmd;
+              som+=tot;
+                Materialize.toast('produit ajouté au panier !', 4000,'green');
+                $('.panier tbody').append($("<tr><td>"+data.codeprod+"</td><td>"+data.designation+"</td><td>"+qtecmd+"</td><td>"+data.pu+"</td><td class='tota'>"+tot+"</td><td><a href='#' class='supp'><img src='../image/supp.png'></a></td></tr>"
+                  ).hide(2).fadeIn(2000));
+               
+                $('#desi').val("");
+                $('.qtecmdd').parent().find("input[name=qtecmd]").val("");
+                $('.total').html("TOTAL : "+som+" F CFA");
+              }
+            }
+            }
+           
+        });
+
+      
+
+      
+
+      return false;
+    });
+
+    $('.panier tbody').on('click','.supp',function(){
+      
+      var s = $(this).parents('tr').find("td:eq(4)").text();
+       
+      som-=s;
+      $('.total').html("TOTAL : "+som+" F CFA");
+      $(this).parents('tr').fadeOut();
+      Materialize.toast('produit supprimé du panier !', 4000,'green');
+
+      return false;
+    });
 
 
 });

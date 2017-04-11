@@ -11,6 +11,10 @@ if ($_SESSION['login'] ==""  ) {
       $reql=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecli='$codecli' AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =1 GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC");
       $verifl=mysql_query($reql) or die(mysql_error());
       $rowl =mysql_num_rows($verifl);
+      $reqt="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
+    $verift=mysql_query($reqt);
+    $reqp="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
+      $verifp=mysql_query($reqp);
       
 
      ?>
@@ -19,6 +23,7 @@ if ($_SESSION['login'] ==""  ) {
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/materialize.min.css">
+   <link rel="stylesheet" href="../css/awesomplete.css">
 	<link rel="stylesheet" href="../css/myCss.css">
 	<title>scAcces</title>
 </head>
@@ -48,7 +53,75 @@ if ($_SESSION['login'] ==""  ) {
             <p class="center">fsgbfjdngbjfndxjnjdfnjvdnfjgvndfjnjdfngvdfjngefhsrnfsnfdnjdk <br>gfsnknkjnfndfgjfkdngjnxdfkjgnfjsvf <br>kfsfkgnsnkjsngpsogjs,pggjjjksldfkd <br>dfnjsfsfknfdjdkjmdkjsjosjfvkdd <br>dffff,jksdjdifjskfkqdnsvigjnsj</p>
           </div>
         </div>
-        <div class="row"><br>
+        <div class="comm center">
+          <br>
+          <button class="btn blue waves-effect puc">Passer une commande</button><br>
+          <div style="display:none;" class="row">
+        
+        <div class="card-panel col s4 center com z-depth-5">
+          <h5 class=" center">commande</h5>
+        
+          <form method="post" action="" class="ajoutPanier">
+
+          <div class="input-field ">
+            <select name='prod'  class="validate" id="selectprod">
+              <option value="1" disabled selected>selectionner un produit</option>
+              <?php while ($recupp=mysql_fetch_assoc($verifp)) { ?>
+              <option value="<?php echo $recupp['codeprod']; ?>"><?php echo $recupp['designation'].'  quantite : '.$recupp['qte']; ?></option>
+              <?php } ?>
+            </select>
+            <label>Produit</label>
+          </div><p>ou</p>
+          <input  class="awesomplete" list="mylist" type="text" placeholder="ou saisir la designation" name="des" id="desi">
+          <div class="input-field qtecmdd">
+          <input placeholder="quantite a commander"  type="text" name="qtecmd" required>
+            
+          </div>
+          
+
+        <button type="submit" class=" btn blue waves-effect">Ajouter au panier</button>
+        </form>
+          
+        
+
+          <br>        </div>
+
+        <div class="card-panel col s7 offset-s1 center  z-depth-5">
+          <h5 class=" center">Panier</h5>
+          
+          <table class="panier" style="overflow: hidden;">
+            <tbody>
+              <tr>
+                <th>code Produit</th>
+                <th>Designation</th>
+                <th>Qte</th>
+                <th>PU</th>
+                <th>total</th>
+                <th>supprimer</th>
+              </tr>
+    
+            </tbody>
+          </table>
+ 
+          <h5 class="total blue white-text center">TOTAL : 0 F CFA</h5><br>
+          
+          
+          
+          
+
+          
+          
+          <button   class="cmd btn waves-effect blue ">commander</button><br><br><br>
+          
+
+  
+  
+         
+    </div>
+
+        </div>
+        </div>
+        <div class="row center" >
           <h4 class="titre center">Liste des commandes en cours...</h4><br>
 
           <table class="tablcom z-depth-5">
@@ -159,7 +232,11 @@ if ($_SESSION['login'] ==""  ) {
         </footer>
 
       
-	
+	<datalist id="mylist" style="display:none">
+            <?php while ( $recupt=mysql_fetch_assoc($verift)) { ?>
+            <option><?php echo $recupt['designation'].'  quantite : '.$recupt['qte']; ?></option>
+            <?php } ?>
+          </datalist>
     
   
 	
@@ -170,6 +247,7 @@ if ($_SESSION['login'] ==""  ) {
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/scriptUser.js"></script>
+<script src="../js/awesomplete.js"></script>
 
 
 </body>

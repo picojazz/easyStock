@@ -4,9 +4,9 @@
 	background-color: #bdc3c7;
     
     display: flex;
-    min-height: 100vh !important;
+    //min-height: 100vh !important;
     flex-direction: column;
-
+    height: auto;
        
 } main {
     flex: 1 0 auto;
