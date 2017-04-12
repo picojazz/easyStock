@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../css/materialize.min.css">
 	<link rel="stylesheet" href="../css/myCss.css">
   <link rel="icon" type="image/png" href="../image/easystock.png" />
-	<title>Gestion des clients</title>
+	<title>pages d'aide</title>
 </head>
 <body>
 <nav class="nav-extended ">
@@ -22,22 +22,38 @@
 </nav>
     
     <div style="margin-top: 30px;" class="container">
-      <p class="titre center">AIDE</p>
+      <p class="titre center">PAGE D'AIDE</p>
     <ul class="collapsible popout" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header">First</div>
+      <div class="collapsible-header">CLIENTS</div>
       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
     </li>
     <li>
-      <div class="collapsible-header">Second</div>
+      <div class="collapsible-header">FOURNISSEURS</div>
       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
     </li>
     <li>
-      <div class="collapsible-header">Third</div>
+      <div class="collapsible-header">FOURNITURES</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header">COMMANDES</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header">STOCKS</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header">LIVRAISON</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header">FACTURATION</div>
       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
     </li>
   </ul>
-        <br><br><br><br><br><br><br><br><br>
+        <br><br><br>
     </div>
         
        <footer class="page-footer">

@@ -4,8 +4,10 @@ $(document).ready(function(){
 	var $this;
     var $id;
     var som=0;
+    var cmd=0;
+    var i=0;
 
-    $('.indicator').addClass('blue');
+    $('.indicator').addClass('blue'); 
     $('.modal').modal();
 
     $('select').material_select();
@@ -94,8 +96,15 @@ $(document).ready(function(){
 
 
         $('.puc').on('click',function(){
-            $(this).fadeOut();
-            $('.comm .row').slideDown('slow');
+            
+            $('.comm .row').slideToggle('slow',function(){
+              i +=1
+              if (i % 2 !=0) {
+                $('.puc').text('cacher passer une commande');
+              }else{
+                $('.puc').text('afficher passer une commande');
+              }
+            });
         });
 
 
@@ -167,5 +176,62 @@ $(document).ready(function(){
       return false;
     });
 
+
+    //commander
+
+
+    $('.cmd').on('click',function(e){
+      e.preventDefault();
+      
+      
+      var codecli =$('.codecli').text();
+      //console.log(codecli);
+      $.post('admin/commanderUser.php',{codecli : codecli},function (d) {
+         // console.log("envoie commande");
+          if (d == "non") {
+          Materialize.toast("erreur lors de l'enregistrement  !",4000,'red');
+        }else{
+        console.log("dans le else");
+
+        $('.panier tbody tr').each(function(){
+          cmd += 1;
+       var codeprod = $(this).find('td:eq(0)').text();
+       var qtecmd = $(this).find('td:eq(2)').text();
+       
+       if (cmd != 1) {
+       $.post('admin/cmdProduit.php',{codeprod : codeprod ,qtecmd : qtecmd,codecmd : d},function (data){
+        
+        
+
+       });
+
+        }
+       
+     });
+        
+
+        
+        if (cmd == 1) {
+          Materialize.toast("Commande enregistrée sans produit",4000,'green');
+        }else{
+          Materialize.toast("Commande enregistrée",4000,'green');
+        }
+
+     } 
+      });
+      
+
+    
+
+      
+    setTimeout(function(){
+      window.location.reload();
+    },1000)
+
+      
+
+
+      return false;
+    });
 
 });

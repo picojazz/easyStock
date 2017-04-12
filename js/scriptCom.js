@@ -5,6 +5,7 @@ $(document).ready(function() {
     var cmd=0;
     var res=0;
     var $d;
+    var i=0;
 
     $('.indicator').addClass('blue');
     $('.modal').modal();
@@ -221,6 +222,80 @@ $(document).ready(function() {
         setTimeout(function(){
           window.location.reload();
         },1000);
+        return false;
+    });
+
+
+ 
+    $('.comm').click(function(){
+      $('.comatt').slideToggle('slow',function(){
+          i+=1;
+          if (i % 2 != 0) {
+            $('.comm').text('cacher les commandes en attente de confirmation');
+          }else{
+            $('.comm').text('afficher les commandes en attente de confirmation');
+          }
+
+      });
+    });
+
+
+    $('.tabcomm').on('click','.conf',function(){
+      var $this=$(this);
+        var datelivr = $(this).parents('tr').find('td:eq(7)').find('input[name="date"]').val();
+        
+        if (datelivr !== "") {
+        $.get($(this).attr('href')+'&datelivr='+datelivr,function(data){
+          if(data == "oui"){
+            $this.parents('tr').fadeOut();
+            Materialize.toast('commande confirmée!', 4000,'green');
+            alert(datelivr);
+            }else{
+              
+              Materialize.toast('commande non confirmée!', 4000,'red');
+            }
+        });
+        }else{
+          alert(datelivr);
+              Materialize.toast('commande non confirmée ,date svp!', 4000,'red');
+            }
+
+        return false;
+    });
+
+
+    //detail
+
+    $('.tablivrok tbody ').on('click','.detail a',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $this=$(this); 
+        
+        $.ajax({
+            url : $(this).attr("href"),  
+            dataType : "json",   
+            success : function(data)
+            {
+              
+
+              var a=$('#modal3 .modal-content table tbody ').find("tr:eq(0)");
+            $('#modal3 .modal-content table tbody ').empty().append(a);
+              $('#modal3 .modal-content h4').html("commande N° "+data[0].codecmd);
+              data.forEach(function(d){
+                 $('.modal-content table tbody ').find('tr:eq(0)').after("<tr><td>"+d.codeprod+"</td><td>"+d.designation+"</td><td>"+d.pu+"</td><td>"+d.qtecmd+"</td><td>"+d.montant+" </td></tr>");
+                 
+                });
+
+              //alert(JSON.stringify(data));
+
+              $('#modal3').modal('open');
+
+
+            }   
+                
+           
+        });
+
         return false;
     });
 

@@ -91,7 +91,7 @@ $(document).ready(function(){
     $('.tablivrok tbody ').on('click','.detail a',function(e){
         e.preventDefault();
         e.stopPropagation();
-        $this=$(this);
+        $this=$(this); 
         
         $.ajax({
             url : $(this).attr("href"),  

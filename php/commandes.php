@@ -1,6 +1,6 @@
 <?php 
     include 'moduleTestUser.php';
-    include 'moduleConnexion.php';
+    include 'moduleConnexion.php'; 
 
       $req="SELECT codecli,prenom,nom FROM client ORDER BY codecli DESC ";
       $verif=mysql_query($req);
@@ -12,7 +12,7 @@
       $reqp="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
       $verifp=mysql_query($reqp);
 
-      $reqt=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant,cp.etat FROM commande c,client cl,cmdprod cp,produit p WHERE cp.etat = 0 AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod   ORDER BY c.codecmd DESC");
+      $reqt=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant,cp.etat FROM commande c,client cl,cmdprod cp,produit p WHERE cp.etat = 0 AND c.datelivr != '0000-00-00' AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod   ORDER BY c.codecmd DESC");
       $verift=mysql_query($reqt) or die(mysql_error());
 
       $nbAll=mysql_num_rows($verift);
@@ -24,8 +24,12 @@
         $pageActuel = 1 ;
       }
 
-      $reqc=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant FROM commande c,client cl,cmdprod cp,produit p WHERE cp.etat = 0 AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod ORDER BY c.codecmd DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage");
+      $reqc=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant FROM commande c,client cl,cmdprod cp,produit p WHERE cp.etat = 0 AND c.datelivr != '0000-00-00' AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod ORDER BY c.codecmd DESC LIMIT ".(($pageActuel - 1)*$nPage).",$nPage");
       $verifc=mysql_query($reqc) or die(mysql_error());
+
+
+      $reqv="SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 AND c.datelivr='0000-00-00'  GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC  ";
+      $verifv=mysql_query($reqv) or die(mysql_error());
 
  ?>
 <!DOCTYPE html>
@@ -200,7 +204,47 @@
 
       </div>
 
-        <div class="row">
+      <div class="row center">
+        <button class="btn blue waves-effect comm " >Afficher les commandes en attente de confirmation</button><br><br>
+      <div style="display:none;" class="col s12 comatt">
+        <h4 class="titre">commande en attente</h4><br>
+            <table class="tabcomm tablivrok">
+          <tbody>
+            <tr>
+              <th>N° commande</th>
+              <th>Datecmd</th>
+              <th>code client</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Montant total (f cfa)</th>
+              <th>details</th>
+              <th>Date livraison</th>
+            </tr>
+            <?php while($recupv=mysql_fetch_assoc($verifv)) { ?>
+            <tr>
+              <td>N° <?php echo $recupv['codecmd']; ?></td>
+                <td style="color:#2ecc71;"><?php echo $recupv['datecmd']; ?></td>
+                <td><?php echo $recupv['codecli']; ?></td>
+                <td><?php echo $recupv['nom']; ?></td>
+                <td><?php echo $recupv['prenom']; ?></td>
+                <td style="color:#3498db;"><?php echo number_format($recupv['montant'],0,","," "); ?></td>
+                <td class="detail"><a href="admin/recupCom.php?id=<?php echo $recupv['codecmd']; ?>"><img src="../image/detail.png"></a></td>
+                <td ><input placeholder="date livraison" class="datepicker col s4" type='date' name="date"><a class=" btn green waves-effect conf" href="admin/confimCom.php?codecmd=<?php echo $recupv['codecmd']; ?>">confirmer</a></td>
+                
+            </tr>
+
+            <?php } ?>
+          </tbody>
+        </table>
+        </div>
+
+      </div>
+
+        <div class="row center">
+        <div class="center">
+    <a href="commandes.php"  ><img src="../image/refresh.png"></a>
+    </div>
+        
           <h4 class="titre center">Liste des Commandes en cours ...</h4>
           
           
@@ -282,7 +326,28 @@
             <?php } ?>
           </datalist>
 
+          
 
+
+          <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4 class="titre center">Modal Header</h4><br><br>
+      <table class="mod">
+          <tbody>
+            <tr>
+              <th>Code produit</th>
+              <th>Produit</th>
+              <th>Prix Unitaire(f cfa)</th>
+              <th>Quantite</th>
+              <th>Montant (f cfa)</th>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+    </div>
+    
+  </div>
 
 
 <script src="../js/jquery.min.js"></script>

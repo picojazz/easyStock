@@ -4,9 +4,9 @@ if ($_SESSION['login'] ==""  ) {
     header("Location:../index.php?erreur=intru");}
     include 'moduleConnexion.php';
       $codecli = $_SESSION['codecli'];
-      $reqc=sprintf("SELECT c.codecmd,cp.codeprod,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant,cp.etat FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecli='$codecli' AND cp.etat = 0 AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod  ORDER BY c.codecmd DESC");
+      $reqc=sprintf("SELECT c.codecmd,cp.codeprod,datecmd,cl.codecli,cp.etat,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant,cp.etat FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecli='$codecli' AND cp.etat = 0 AND c.datelivr !='0000-00-00' AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod  ORDER BY c.codecmd DESC");
       $verifc=mysql_query($reqc) or die(mysql_error());
-      $rowc =mysql_num_rows($verifc);
+      $rowc =mysql_num_rows($verifc); 
 
       $reql=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom,datelivr,SUM(pu*qtecmd) as montant FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecli='$codecli' AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =1 GROUP BY c.codecmd,cl.codecli,datecmd,nom,prenom,datelivr ORDER BY c.datelivr DESC");
       $verifl=mysql_query($reql) or die(mysql_error());
@@ -15,6 +15,10 @@ if ($_SESSION['login'] ==""  ) {
     $verift=mysql_query($reqt);
     $reqp="SELECT codeprod,designation,qte FROM produit ORDER BY codeprod DESC ";
       $verifp=mysql_query($reqp);
+
+      $reqe=sprintf("SELECT c.codecmd,cp.codeprod,datecmd,cl.codecli,nom,prenom,designation,pu,qtecmd,pu*qtecmd as montant,datelivr,qtelivr,qtecmd-qtelivr as qterestant,cp.etat FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecli='$codecli' AND cp.etat = 0 AND c.datelivr ='0000-00-00' AND c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod  ORDER BY c.codecmd DESC");
+      $verife=mysql_query($reqe) or die(mysql_error());
+      $rowe =mysql_num_rows($verife); 
       
 
      ?>
@@ -41,21 +45,22 @@ if ($_SESSION['login'] ==""  ) {
         <?php include 'moduleAlert.php' ?>
         <h4  class="titre center">Page personnel</h4>
         <div class="row">
-          <div style="font-size: 20px;" class="col s3 card-panel ">
+          <div style="font-size: 20px;" class="col s4 card-panel ">
             <h5 class="center">Information</h5>
-            <li>code client : <strong class="right blue-text"><?php echo $_SESSION['codecli']; ?></strong></li>
+            <li>code client : <strong class="codecli right blue-text"><?php echo $_SESSION['codecli']; ?></strong></li>
             <li>Prenom : <strong class="right blue-text"><?php echo $_SESSION['login']; ?></strong></li>
             <li>Nom : <strong class="right blue-text"><?php echo $_SESSION['nom']; ?></strong></li>
+            <li>NB de commande en attente : <strong class="right blue-text"><?php echo $rowe; ?></strong></li>
             <li>NB de commande en cours : <strong class="right blue-text"><?php echo $rowc; ?></strong></li>
             <li>NB de commande livrée : <strong class="right blue-text"><?php echo $rowl; ?></strong></li>
           </div>
-          <div style="font-size: 20px;" class="col s6 offset-s2 card-panel">
+          <div style="font-size: 20px;" class="col s6 offset-s1 card-panel">
             <p class="center">fsgbfjdngbjfndxjnjdfnjvdnfjgvndfjnjdfngvdfjngefhsrnfsnfdnjdk <br>gfsnknkjnfndfgjfkdngjnxdfkjgnfjsvf <br>kfsfkgnsnkjsngpsogjs,pggjjjksldfkd <br>dfnjsfsfknfdjdkjmdkjsjosjfvkdd <br>dffff,jksdjdifjskfkqdnsvigjnsj</p>
           </div>
         </div>
         <div class="comm center">
           <br>
-          <button class="btn blue waves-effect puc">Passer une commande</button><br>
+          <button class="btn blue waves-effect puc">afficher passer une commande</button><br><br>
           <div style="display:none;" class="row">
         
         <div class="card-panel col s4 center com z-depth-5">

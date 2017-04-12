@@ -5,7 +5,7 @@
     $reqg=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 GROUP BY c.codecli ORDER BY c.codecli DESC");
       $verifg=mysql_query($reqg) or die(mysql_error());
 
-    if (isset($_POST['rech'])) {
+    if (isset($_POST['rech'])) { 
       $rech=$_POST['rech'];
       $req=sprintf("SELECT c.codecmd,datecmd,cl.codecli,nom,prenom FROM commande c,client cl,cmdprod cp,produit p WHERE c.codecmd=cp.codecmd AND c.codecli=cl.codecli AND cp.codeprod=p.codeprod AND c.etat =0 GROUP BY c.codecli ORDER BY c.codecli DESC");
       $verif=mysql_query($req) or die(mysql_error());
