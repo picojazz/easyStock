@@ -26,31 +26,31 @@
     <ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <div class="collapsible-header">CLIENTS</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><span>clients</span></div>
     </li>
     <li>
       <div class="collapsible-header">FOURNISSEURS</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><span>fournisseurs</span></div>
     </li>
     <li>
       <div class="collapsible-header">FOURNITURES</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><span>fournitures</span></div>
     </li>
     <li>
       <div class="collapsible-header">COMMANDES</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><span>commandes</span></div>
     </li>
     <li>
       <div class="collapsible-header">STOCKS</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><span>stocks</span></div>
     </li>
     <li>
       <div class="collapsible-header">LIVRAISON</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><span>livraison</span></div>
     </li>
     <li>
       <div class="collapsible-header">FACTURATION</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body"><span>facturation</span></div>
     </li>
   </ul>
         <br><br><br>
