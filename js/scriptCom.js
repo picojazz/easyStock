@@ -256,7 +256,7 @@ $(document).ready(function() {
             }
         });
         }else{
-          alert(datelivr);
+          
               Materialize.toast('commande non confirmée ,date svp!', 4000,'red');
             }
 
